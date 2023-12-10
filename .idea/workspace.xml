@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c1ed628f-ba09-4258-ac19-70003e001de5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../FinalProject2" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProject2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Honkai Star Rail.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Postman.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/../Postman.lnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Roblox Studio.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/../Roblox Studio.lnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/api/PostAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/api/PostAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/dto/PostDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/dto/PostDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/CommentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/CommentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/PostEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/PostEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/RoleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/RoleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/java/com/schoolforum/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkSpace_Spring/HschoolForum/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/css/mdb.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/css/mdb.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/css/mdb.rtl.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/css/mdb.rtl.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/img/mdb-favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/js/mdb.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/js/mdb.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/login-cover.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/alert.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/base-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/base-component.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/button.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/carousel.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/collapse.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/data.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/event-handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/event-handler.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/manipulator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/manipulator.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/selector-engine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dom/selector-engine.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/dropdown.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/modal.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/popover.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/popover.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/scrollspy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/scrollspy.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/tab.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/toast.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/toast.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/tooltip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/dist/tooltip.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/base-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/dom/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/dom/event-handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/dom/manipulator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/dom/selector-engine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/popover.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/scrollspy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/toast.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/tooltip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/mdb-prefix/util/sanitizer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/base-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/dom/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/dom/event-handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/dom/manipulator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/dom/selector-engine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/popover.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/scrollspy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/toast.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/tooltip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/bootstrap/src/util/sanitizer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/input.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/popover.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/range.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/ripple.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/scrollspy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/toast.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/free/tooltip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb.free.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/dom/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/dom/event-handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/dom/manipulator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/dom/selector-engine.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/handlers/click-rail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/handlers/drag-thumb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/handlers/keyboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/handlers/mouse-wheel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/handlers/touch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/lib/class-names.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/lib/css.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/lib/dom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/lib/event-manager.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/lib/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/process-scroll-diff.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/perfect-scrollbar/update-geometry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/focusTrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/keycodes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/sanitizer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/stack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/touch/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/touch/swipe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/js/mdb/util/touch/touchUtil.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_accordion.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_alert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_badge.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_breadcrumb.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_button-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_card.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_carousel.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_close.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_containers.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_dropdown.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_forms.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_functions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_helpers.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_images.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_list-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_modal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_nav.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_navbar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_pagination.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_popover.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_progress.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_reboot.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_root.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_spinners.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_tables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_toasts.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_tooltip.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_transitions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_type.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/bootstrap-grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/bootstrap-reboot.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/bootstrap-utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/bootstrap.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_floating-labels.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_form-check.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_form-control.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_form-range.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_form-select.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_form-text.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_input-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_labels.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/forms/_validation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_clearfix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_colored-links.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_position.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_ratio.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_stretched-link.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_text-truncation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/helpers/_visually-hidden.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_alert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_border-radius.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_box-shadow.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_breakpoints.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_caret.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_clearfix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_container.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_deprecate.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_forms.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_gradients.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_image.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_list-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_lists.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_pagination.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_reset-text.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_resize.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_table-variants.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_text-truncate.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_transition.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/mixins/_visually-hidden.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/utilities/_api.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap-rtl-fix/vendor/_rfs.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_accordion.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_alert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_badge.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_breadcrumb.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_button-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_card.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_carousel.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_close.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_containers.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_dropdown.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_forms.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_functions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_helpers.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_images.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_list-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_modal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_nav.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_navbar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_pagination.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_popover.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_progress.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_reboot.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_root.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_spinners.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_tables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_toasts.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_tooltip.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_transitions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_type.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/bootstrap-grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/bootstrap-reboot.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/bootstrap-utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/bootstrap.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_floating-labels.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_form-check.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_form-control.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_form-range.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_form-select.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_form-text.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_input-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_labels.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/forms/_validation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_clearfix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_colored-links.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_position.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_ratio.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_stretched-link.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_text-truncation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/helpers/_visually-hidden.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_alert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_border-radius.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_box-shadow.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_breakpoints.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_caret.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_clearfix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_container.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_deprecate.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_forms.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_gradients.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_grid.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_image.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_list-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_lists.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_pagination.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_reset-text.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_resize.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_table-variants.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_text-truncate.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_transition.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/mixins/_visually-hidden.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/utilities/_api.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/bootstrap/vendor/_rfs.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/custom/_styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/custom/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_accordion.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_alert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_badge.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_breadcrumb.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_button-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_card.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_carousel.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_close.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_colors.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_deprecated.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_dropdown.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_flag.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_functions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_images.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_list-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_modal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_nav.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_navbar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_pagination.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_popover.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_progress.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_range.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_reboot.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_ripple.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_root.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_scrollspy.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_shadows.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_tables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_toasts.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_tooltip.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_type.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_form-check.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_form-control.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_form-file.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_form-range.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_form-select.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_input-group.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/forms/_validation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/mixins/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/mixins/_ripple.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/mixins/_table-variants.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/free/modules/_buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/mdb.core.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-5-login-cover-template-main/src/scss/mdb.free.scss" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-987029365">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="955" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Spring 3.0.5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring 3.0.5" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FinalProject2/web-workspace/final-project" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1ed628f-ba09-4258-ac19-70003e001de5" name="Default Changelist" comment="" />
+      <created>1701159265035</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701159265035</updated>
+      <workItem from="1701159268097" duration="23000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="23000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="830" extended-state="6" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
