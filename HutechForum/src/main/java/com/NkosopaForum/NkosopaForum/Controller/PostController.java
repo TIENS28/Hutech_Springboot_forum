@@ -20,7 +20,7 @@ import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 import com.NkosopaForum.NkosopaForum.Services.impl.PostService;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/auth/posts")
 public class PostController {
 
 	@Autowired
@@ -28,9 +28,7 @@ public class PostController {
 
 	@Autowired
 	private CommentServices cmtService;
-
-	@Autowired
-	private PostConverter postConverter;
+	
 
 	@PostMapping("/newPost")
 	public PostDTO savePost(@RequestBody PostDTO postDTO) {
@@ -57,10 +55,10 @@ public class PostController {
 		return ResponseEntity.ok(newComment);
 	}
 
-	// get all post and its comments
+	// get all post and its comments order by created date desc 
 	@GetMapping("/allPost")
 	public ResponseEntity<List<PostDTO>> getAllPosts() {
-		List<PostDTO> posts = postService.findAll();
+		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
 
 		for (PostDTO postDTO : posts) {
 			List<CommentDTO> comments = cmtService.findByPostId(postDTO.getId());
@@ -68,5 +66,18 @@ public class PostController {
 		}
 		return ResponseEntity.ok(posts);
 	}
+		
+	@GetMapping("/allPostsByUser/{userId}")
+	public ResponseEntity<List<PostDTO>> getAllPostsByUser(@PathVariable Long userId) {
+	    List<PostDTO> posts = postService.findPostsByUserId(userId);
 
+	    for (PostDTO postDTO : posts) {
+	        List<CommentDTO> comments = cmtService.findByPostId(postDTO.getId());
+	        postDTO.setComments(comments);
+	    }
+
+	    return ResponseEntity.ok(posts);
+	}
+	
+	
 }

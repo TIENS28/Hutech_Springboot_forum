@@ -1,6 +1,8 @@
 package com.NkosopaForum.NkosopaForum.Converter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,6 +20,7 @@ public class UserConverter {
 	// for new user
 	public User UserToEntity(UserDTO dto) {
 		User entity = new User();
+		updateEntityFromDTO(entity, dto);
 		entity.setCreatedDate(LocalDateTime.now());
 		return entity;
 	}
@@ -27,13 +30,37 @@ public class UserConverter {
 		if (user.getId() != null) {
 			dto.setId(user.getId());
 		}
-		dto.setFullName(user.getUsername());
+		dto.setFullName(user.getFullName());
 		dto.setPassword(user.getPassword());
 		dto.setCreatedDate(user.getCreatedDate());
-		dto.setMail(user.getEmail());
-		dto.setStatus(user.isStatus());
+		dto.setEmail(user.getEmail());
+		dto.setDOB(user.getDOB());
+		dto.setDepartment(user.getDepartment());
+		dto.setStudentID(user.getStudentID());
+		dto.setAvatar(user.getAvatar());
+		dto.setFollowerUser(EnitytoDTO(user.getFollower()));
+		dto.setFollowingUser(EnitytoDTO(user.getFollowing()));
 		
 		return dto;
+	}
+
+	public List<UserDTO> EnitytoDTO(List<User> follower) {
+		List<UserDTO> userDTOs = new ArrayList<>();
+		
+		for(User user: follower) {
+			UserDTO dto = new UserDTO();
+
+			dto.setFullName(user.getFullName());
+			dto.setCreatedDate(user.getCreatedDate());
+			dto.setEmail(user.getEmail());
+			dto.setDOB(user.getDOB());
+			dto.setDepartment(user.getDepartment());
+			dto.setStudentID(user.getStudentID());
+			dto.setAvatar(user.getAvatar());
+			userDTOs.add(dto);
+		}
+		
+		return userDTOs;
 	}
 
 	// for update user information
@@ -41,14 +68,21 @@ public class UserConverter {
 		if (dto.getId() == null) {
 			return null;
 		} else {
-			entity.setEmail(dto.getMail());
-			entity.setFirstName(dto.getFirstName());
-			entity.setLastName(dto.getLastName());
-			entity.setFullName(dto.getFirstName() + " " + dto.getLastName());
-			entity.setStatus(dto.isStatus());
+			updateEntityFromDTO(entity, dto);
 			entity.setModifiedDate(LocalDateTime.now());
-			entity.setModifiedBy(dto.getUsername());
+			entity.setModifiedBy(dto.getFirstName() + " " + dto.getLastName());
 			return entity;
 		}
+	}
+	
+	//avoid duplicate
+	private void updateEntityFromDTO(User entity, UserDTO dto) {
+		entity.setEmail(dto.getEmail());
+		entity.setFirstName(dto.getFirstName());
+		entity.setLastName(dto.getLastName());
+		entity.setFullName(dto.getFirstName() + " " + dto.getLastName());
+		entity.setDOB(dto.getDOB());
+		entity.setDepartment(dto.getDepartment());
+		entity.setStudentID(dto.getStudentID());
 	}
 }

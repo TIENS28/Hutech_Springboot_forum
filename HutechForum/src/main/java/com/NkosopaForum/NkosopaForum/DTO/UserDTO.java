@@ -1,55 +1,34 @@
 package com.NkosopaForum.NkosopaForum.DTO;
 
-import lombok.Builder;
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.NoArgsConstructor;
 
-
-@Data
-@Builder
 @NoArgsConstructor
 public class UserDTO extends BaseDTO<UserDTO> {
 
-    private String username;
-    private String firstName;
+	private String firstName;
     private String lastName;
     private String password;
-    private boolean status;
     private String email;
     private RoleDTO role;
     private String fullName;
+    private String studentID;
+    private String DOB;
+    private String department;
+    private List<UserDTO> followingUser =  new ArrayList<>();
+    private List<UserDTO> followerUser = new ArrayList<>();
+    private boolean followed;
+    private String avatar;
     
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    
-    public String getMail() {
-		return email;
-	}
-
-	public void setMail(String mail) {
-		this.email = mail;
-	}
-
-	public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
 	public String getFirstName() {
@@ -82,6 +61,70 @@ public class UserDTO extends BaseDTO<UserDTO> {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
+
+	public String getDOB() {
+		return DOB;
+	}
+
+	public void setDOB(String dOB) {
+		DOB = dOB;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public List<UserDTO> getFollowingUser() {
+		return followingUser;
+	}
+
+	public void setFollowingUser(List<UserDTO> followingUser) {
+		this.followingUser = followingUser;
+	}
+
+	public List<UserDTO> getFollowerUser() {
+		return followerUser;
+	}
+
+	public void setFollowerUser(List<UserDTO> followerUser) {
+		this.followerUser = followerUser;
+	}
+
+	public boolean isFollowed() {
+		return followed;
+	}
+
+	public void setFollowed(boolean followed) {
+		this.followed = followed;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
     
 }

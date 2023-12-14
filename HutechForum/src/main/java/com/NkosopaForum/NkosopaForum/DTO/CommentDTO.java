@@ -4,44 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDTO extends BaseDTO<CommentDTO> {
-	private String content;
+    private String content;
 
-	private Long userId;
+    private Long userId;
 
-	private Long postId;	
-	
-	private List<CommentDTO> commentsAnws = new ArrayList<>();
-	
-	public String getContent() {
-		return content;
-	}
+    private Long postId;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    private List<CommentDTO> commentsAnws = new ArrayList<>();
 
+    private UserDTO user;
 
-	public Long getUserId() {
-		return userId;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public Long getPostId() {
-		return postId;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public void setPostId(Long postId) {
-		this.postId = postId;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	public List<CommentDTO> getCommentsAnws() {
-		return commentsAnws;
-	}
+    public Long getPostId() {
+        return postId;
+    }
 
-	public void setCommentsAnws(List<CommentDTO> commentsAnws) {
-		this.commentsAnws = commentsAnws;
-	}
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public List<CommentDTO> getCommentsAnws() {
+        return commentsAnws;
+    }
+
+    public void setCommentsAnws(List<CommentDTO> commentsAnws) {
+        this.commentsAnws = commentsAnws;
+    }
+
+    // Getter and setter for UserDTO
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
 }

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
+import com.NkosopaForum.NkosopaForum.util.PostUtil;
 
 @Component
 public class PostConverter {
@@ -18,7 +20,11 @@ public class PostConverter {
 	@Autowired
 	@Lazy
 	private UserConverter userConverter;
-
+    
+	@Autowired
+	@Lazy
+	private AuthenticationService authService;
+	 
 	public Post PostToEntity(PostDTO dto) {
 		Post entity = new Post();
 		entity.setId(dto.getId());
@@ -35,7 +41,7 @@ public class PostConverter {
 			entity.setUser(user);
 		}
 		
-		entity.setCreatedBy(dto.getUser().getUsername());
+		entity.setCreatedBy(dto.getUser().getFullName());
 		return entity;
 	}
 
@@ -55,33 +61,41 @@ public class PostConverter {
 			user.setFirstName(dto.getUser().getFirstName());
 			user.setLastName(dto.getUser().getLastName());			
 			entity.setUser(user);
-			entity.setModifiedBy(dto.getUser().getUsername());
+			entity.setModifiedBy(dto.getUser().getFullName());
 		}
 		return entity;
 		}
 	}
 
-	public PostDTO toDTO(Post entity) {
-		PostDTO dto = new PostDTO();
+	 public PostDTO toDTO(Post entity) {
+	        PostDTO dto = new PostDTO();
 
-		if (entity.getId() != null) {
-			dto.setId(entity.getId());
-		}
-		dto.setTitle(entity.getTitle());
-		dto.setContent(entity.getContent());
-		dto.setDescription(entity.getDescription());
-		dto.setThumbnail(entity.getThumbnail());
-		dto.setCreatedDate(entity.getCreatedDate());
-		dto.setCreatedBy(entity.getCreatedBy());
-		dto.setModifiedDate(entity.getModifiedDate());
-		dto.setModifiedBy(entity.getUser().getUsername());
-		dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
-		
-		return dto;
-	}
+	        User user = authService.getCurrentUser();
+	        
+	        boolean isLiked = PostUtil.isLikedByUser(user, entity);
 
-	public static List<PostDTO> toDTOList(List<Post> posts) {
-		PostConverter converter = new PostConverter();
-		return posts.stream().map(converter::toDTO).collect(Collectors.toList());
-	}
+	        if (entity.getId() != null) {
+	            dto.setId(entity.getId());
+	        }
+	        dto.setTitle(entity.getTitle());
+	        dto.setContent(entity.getContent());
+	        dto.setDescription(entity.getDescription());
+	        dto.setThumbnail(entity.getThumbnail());
+	        dto.setCreatedDate(entity.getCreatedDate());
+	        dto.setCreatedBy(entity.getCreatedBy());
+	        dto.setTotalLikes(entity.getLikes().size());
+	        dto.setLiked(isLiked);
+	        dto.setModifiedDate(entity.getModifiedDate());
+	        dto.setModifiedBy(entity.getUser().getUsername());
+	        dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
+	        dto.setCurrentUser(userConverter.EnitytoDTO(user));
+
+	        return dto;
+	    }
+
+	 public List<PostDTO> toDTOList(List<Post> posts) {
+	        return posts.stream()
+	                .map(this::toDTO)
+	                .collect(Collectors.toList());
+	    }
 }

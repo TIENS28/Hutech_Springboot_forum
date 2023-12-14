@@ -1,8 +1,8 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
+import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
 import com.NkosopaForum.NkosopaForum.Services.iPostServices;
 
@@ -52,13 +53,40 @@ public class PostService implements iPostServices {
 
 	@Override
 	public List<PostDTO> findAll() {
-		List<PostDTO> rs = new ArrayList<>();
-		List<Post> posts = postRepo.findAll();
-		for(Post item: posts) {
-			PostDTO postDto = postConvert.toDTO(item);
-			rs.add(postDto);
-		}
-	    return rs;
+	    List<Post> posts = postRepo.findAll();
+	    return posts.stream()
+	            .map(postConvert::toDTO)
+	            .collect(Collectors.toList());
+	}
+
+
+	@Override
+	public List<PostDTO> findPostsByUserId(Long userId) {
+        List<Post> posts = postRepo.findPostsByUserId(userId);
+        return posts.stream()
+                .map(postConvert::toDTO)
+                .collect(Collectors.toList());
+    }
+	
+	@Override
+	public List<PostDTO> findAllPostsOrderByCreatedDate() {
+	    List<Post> posts = postRepo.findAllByOrderByCreatedDateDesc();
+	    return posts.stream()
+	            .map(postConvert::toDTO)
+	            .collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<PostDTO> findAllPostsWithComments() {
+        return postRepo.findAllWithComments().stream()
+                .map(postConvert::toDTO)
+                .collect(Collectors.toList());
+    }
+
+	@Override
+	public List<PostDTO> findAll(User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

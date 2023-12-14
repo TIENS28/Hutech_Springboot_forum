@@ -14,7 +14,19 @@ public class PostDTO extends BaseDTO<PostDTO> {
     private String content;
 	private List<CommentDTO> comments = new ArrayList<>();
     private UserDTO user;
+    private boolean isLiked;
+    private int totalLikes;
+    private int totalComments;
+    private UserDTO currentUser;
 
+    public UserDTO getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(UserDTO currentUser) {
+        this.currentUser = currentUser;
+    }
+    
     public String getTitle() {
         return title;
     }
@@ -63,4 +75,53 @@ public class PostDTO extends BaseDTO<PostDTO> {
     public void setUser(UserDTO user) {
         this.user = user;
     }
+    
+    public String getAuthorFirstName() {
+        if (user != null) {
+            return user.getFirstName();
+        } else {
+            return "Unknown"; 
+        }
+    }
+
+    public String getAuthorLastName() {
+        if (user != null) {
+            return user.getLastName();
+        } else {
+            return "Unknown"; 
+        }
+    }
+
+    public String getAuthorFullName() {
+        if (user != null) {
+            return user.getFirstName() + " " + user.getLastName();
+        } else {
+            return "Unknown"; 
+        }
+    }
+
+	public int getTotalLikes() {
+		return totalLikes;
+	}
+
+	public void setTotalLikes(int totalLikes) {
+		this.totalLikes = totalLikes;
+	}
+
+	public int getTotalComments() {
+		return totalComments;
+	}
+
+	public void setTotalComments(int totalComments) {
+		this.totalComments = totalComments;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
+	}
+   
 }

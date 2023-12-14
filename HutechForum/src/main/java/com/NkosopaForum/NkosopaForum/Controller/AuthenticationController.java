@@ -2,6 +2,7 @@ package com.NkosopaForum.NkosopaForum.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +17,9 @@ import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthenticationController {
-	
-	@Autowired
-	private UserConverter userConverter;
-	
+		
 	@Autowired
 	private AuthenticationService authServicer;
 	
@@ -31,8 +30,10 @@ public class AuthenticationController {
 		
 	}
 	
-	@PostMapping("/authenticate")
+	@PostMapping("/login")
 	public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request){
 		return ResponseEntity.ok(authServicer.authenticate(request));
 	}
+	
+	
 }
