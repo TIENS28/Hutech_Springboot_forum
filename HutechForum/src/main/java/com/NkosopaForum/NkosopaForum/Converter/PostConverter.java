@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -71,6 +72,8 @@ public class PostConverter {
 	        PostDTO dto = new PostDTO();
 
 	        User user = authService.getCurrentUser();
+	        Hibernate.initialize(entity.getUser().getFollower());
+	        Hibernate.initialize(entity.getLikes());
 	        
 	        boolean isLiked = PostUtil.isLikedByUser(user, entity);
 
