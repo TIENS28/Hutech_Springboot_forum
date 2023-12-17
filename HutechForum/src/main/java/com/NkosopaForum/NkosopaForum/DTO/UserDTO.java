@@ -3,6 +3,8 @@ package com.NkosopaForum.NkosopaForum.DTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -20,8 +22,8 @@ public class UserDTO extends BaseDTO<UserDTO> {
     private List<UserDTO> followingUser =  new ArrayList<>();
     private List<UserDTO> followerUser = new ArrayList<>();
     private boolean followed;
-    private String avatar;
-    
+    private MultipartFile avatar;
+    private String avatarUrl;
     
     public String getPassword() {
         return password;
@@ -119,12 +121,21 @@ public class UserDTO extends BaseDTO<UserDTO> {
 		this.followed = followed;
 	}
 
-	public String getAvatar() {
+	public MultipartFile getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(MultipartFile avatar) {
 		this.avatar = avatar;
 	}
+
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
+
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
     
+	
 }

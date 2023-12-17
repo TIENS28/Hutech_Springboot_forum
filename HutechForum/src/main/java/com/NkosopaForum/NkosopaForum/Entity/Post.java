@@ -3,7 +3,9 @@ package com.NkosopaForum.NkosopaForum.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -30,15 +32,16 @@ public class Post extends BaseEntity<Post>{
 	
 	private String Content;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<LikeEntity> likes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<CommentEntity> comments = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@OneToMany
-	private List<CommentEntity> comments = new ArrayList<>();
+
 	
 	
 	public String getTitle() {

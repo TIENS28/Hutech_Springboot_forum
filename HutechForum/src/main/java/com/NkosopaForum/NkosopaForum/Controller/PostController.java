@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
@@ -54,16 +53,17 @@ public class PostController {
 		CommentDTO newComment = cmtService.save(commentDTO);
 		return ResponseEntity.ok(newComment);
 	}
-
+	
+	@GetMapping("/{postId}/comments")
+    public ResponseEntity<List<CommentDTO>> getComments(@PathVariable Long postId) {
+        List<CommentDTO> comments = cmtService.findByPostId(postId);
+        return ResponseEntity.ok(comments);
+    }
+	
 	// get all post and its comments order by created date desc 
 	@GetMapping("/allPost")
 	public ResponseEntity<List<PostDTO>> getAllPosts() {
 		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
-
-		for (PostDTO postDTO : posts) {
-			List<CommentDTO> comments = cmtService.findByPostId(postDTO.getId());
-			postDTO.setComments(comments);
-		}
 		return ResponseEntity.ok(posts);
 	}
 		

@@ -34,32 +34,42 @@ public class CommentServices implements iCommentService {
 	@Autowired
 	private CommentRepository cmtRepo;
 
+	@Autowired
+	private AuthenticationService authenticationService;
+
 	@Override
 	public CommentDTO save(CommentDTO dto) {
-	    CommentEntity newCmt = commentConverter.toEntity(dto);
 
-	    Optional<Post> post = postRepo.findById(dto.getPostId());
-	    Optional<User> user = userRepo.findById(dto.getUserId());
+		User currentUser = authenticationService.getCurrentUser();
+		CommentEntity newCmt = commentConverter.toEntity(dto, currentUser);
 
-	    if (post.isPresent() && user.isPresent()) {
-	        newCmt.setPost(post.get());
-	        newCmt.setUser(user.get());
-	        newCmt.setCreatedBy(user.get().getUsername());
-	    } else {
-	        throw new EntityNotFoundException("Post or User not found");
-	    }
-	    CommentEntity savedComment = cmtRepo.save(newCmt);
-	    return commentConverter.toDTO(savedComment);
+		Optional<Post> post = postRepo.findById(dto.getPostId());
+
+		if (post.isPresent()) {
+			newCmt.setPost(post.get());
+			newCmt.setCreatedBy(currentUser.getUsername());
+		} else {
+			throw new EntityNotFoundException("Post not found");
+		}
+
+		CommentEntity savedComment = cmtRepo.save(newCmt);
+		return commentConverter.toDTO(savedComment);
 	}
 
 	@Override
 	public List<CommentDTO> findByPostId(Long id) {
 		List<CommentDTO> rs = new ArrayList<>();
 		Optional<Post> post = postRepo.findById(id);
-		List<CommentEntity> entity = cmtRepo.findByPost(post);
-		for (CommentEntity item : entity) {
-			CommentDTO commentDTO = commentConverter.toDTO(item);
-			rs.add(commentDTO);
+
+		if (post.isPresent()) {
+			List<CommentEntity> entities = cmtRepo.findByPost(post.get());
+
+			for (CommentEntity entity : entities) {
+				if (entity.getUser() != null) {
+					CommentDTO commentDTO = commentConverter.toDTO(entity);
+					rs.add(commentDTO);
+				}
+			}
 		}
 		return rs;
 	}

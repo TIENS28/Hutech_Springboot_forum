@@ -23,6 +23,7 @@ public class UserConverter {
 		User entity = new User();
 		updateEntityFromDTO(entity, dto);
 		entity.setCreatedDate(LocalDateTime.now());
+		
 		return entity;
 	}
 
@@ -39,8 +40,8 @@ public class UserConverter {
 	    dto.setDOB(user.getDOB());
 	    dto.setDepartment(user.getDepartment());
 	    dto.setStudentID(user.getStudentID());
-	    dto.setAvatar(user.getAvatar());
-	    
+        dto.setAvatarUrl(user.getAvatarUrl());
+        
 	    // Check if the 'follower' collection is initialized
 	    if (user.getFollower() != null && Hibernate.isInitialized(user.getFollower())) {
 	        // Access the 'follower' collection without triggering lazy initialization
@@ -72,7 +73,6 @@ public class UserConverter {
 	        dto.setDOB(user.getDOB());
 	        dto.setDepartment(user.getDepartment());
 	        dto.setStudentID(user.getStudentID());
-	        dto.setAvatar(user.getAvatar());
 	        userDTOs.add(dto);
 	    }
 

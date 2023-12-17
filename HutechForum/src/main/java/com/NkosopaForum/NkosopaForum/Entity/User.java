@@ -42,7 +42,7 @@ public class User extends BaseEntity<User> implements UserDetails{
 	
 	private String department;
 	
-	private String avatar;
+	private String avatarUrl	;
 	
 	private String email;
 	

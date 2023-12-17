@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
+import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 import com.NkosopaForum.NkosopaForum.util.PostUtil;
 
 @Component
@@ -25,7 +27,11 @@ public class PostConverter {
 	@Autowired
 	@Lazy
 	private AuthenticationService authService;
-	 
+	
+	@Autowired
+	@Lazy
+	private CommentServices cmtService;
+	
 	public Post PostToEntity(PostDTO dto) {
 		Post entity = new Post();
 		entity.setId(dto.getId());
@@ -87,12 +93,16 @@ public class PostConverter {
 	        dto.setCreatedDate(entity.getCreatedDate());
 	        dto.setCreatedBy(entity.getCreatedBy());
 	        dto.setTotalLikes(entity.getLikes().size());
+	        dto.setTotalComments(entity.getComments().size());
 	        dto.setLiked(isLiked);
 	        dto.setModifiedDate(entity.getModifiedDate());
 	        dto.setModifiedBy(entity.getUser().getUsername());
 	        dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
 	        dto.setCurrentUser(userConverter.EnitytoDTO(user));
-
+	       
+			List<CommentDTO> comments = cmtService.findByPostId(dto.getId());
+			dto.setComments(comments);
+			
 	        return dto;
 	    }
 

@@ -14,7 +14,6 @@ import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iUserService;
-import com.NkosopaForum.NkosopaForum.util.UserUtil;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -42,7 +41,7 @@ public class UserService implements iUserService {
 				newUser = userConverter.DtoToEnity(userDTO, oldUser);
 			}
 		}
-		    
+		
 		userRepo.save(newUser);
 		return userConverter.EnitytoDTO(newUser);
 	}

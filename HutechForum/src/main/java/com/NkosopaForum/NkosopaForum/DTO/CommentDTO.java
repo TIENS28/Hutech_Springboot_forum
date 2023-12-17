@@ -12,9 +12,20 @@ public class CommentDTO extends BaseDTO<CommentDTO> {
 
     private List<CommentDTO> commentsAnws = new ArrayList<>();
 
+    private UserDTO currentUser;
+    
     private UserDTO user;
+    
+    
+    public UserDTO getUser() {
+		return user;
+	}
 
-    public String getContent() {
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+
+	public String getContent() {
         return content;
     }
 
@@ -46,12 +57,11 @@ public class CommentDTO extends BaseDTO<CommentDTO> {
         this.commentsAnws = commentsAnws;
     }
 
-    // Getter and setter for UserDTO
-    public UserDTO getUser() {
-        return user;
+    public UserDTO getCurrentUser() {
+        return currentUser;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setCurrentUser(UserDTO currentUser) {
+        this.currentUser = currentUser;
     }
 }
