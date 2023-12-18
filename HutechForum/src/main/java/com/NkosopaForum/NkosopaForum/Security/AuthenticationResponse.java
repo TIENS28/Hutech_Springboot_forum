@@ -22,4 +22,5 @@
 		private LocalDateTime createdDate;
 		private Long avatarFileSize;
 		private String avatarUrl;
+	    private String message; // Add a message field
 	}

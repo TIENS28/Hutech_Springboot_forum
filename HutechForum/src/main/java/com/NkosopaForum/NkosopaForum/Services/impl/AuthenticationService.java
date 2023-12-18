@@ -1,7 +1,6 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +42,17 @@ public class AuthenticationService {
 	@Autowired
 	private Cloudinary cloudinary;
 
-	public AuthenticationResponse register(RegisterRequest request, MultipartFile avatar) {
-		// TODO Auto-generated method stub
-		if (userRepo.existsByEmail(request.getEmail())) {
-			throw new RuntimeException("Email is already bind with other account!");
-		}
-		
-		String avatarUrl = uploadAvatarToCloudinary(avatar);
+	@Autowired
+    private RegistrationService registrationService;
 
-		var user = User.builder()
+	public AuthenticationResponse registerWithVerification(RegisterRequest request, MultipartFile avatar) {
+        if (userRepo.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email is already bind with other account!");
+        }
+
+        String avatarUrl = uploadAvatarToCloudinary(avatar);
+
+        var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .fullName(request.getFirstName() + " " + request.getLastName())
@@ -61,22 +62,19 @@ public class AuthenticationService {
                 .studentID(request.getStudentID())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .avatarUrl(avatarUrl) // Set the avatar URL in the User(Entity)
+                .avatarUrl(avatarUrl)
                 .build();
 
-		userRepo.save(user);
+        userRepo.save(user);
 
-		User savedUser = userRepo.findById(user.getId()).orElse(null);
+        // Call the registration service to initiate email verification
+        registrationService.register(user);
 
-		if (savedUser != null) {
-			LocalDateTime createdDate = savedUser.getCreatedDate();
-
-			String jwtToken = jwtService.generateToken(savedUser);
-			return AuthenticationResponse.builder().token(jwtToken).createdDate(LocalDateTime.now()).build();
-		} else {
-			return null;
-		}
-	}
+        // Generate and return the authentication response with a message
+        return AuthenticationResponse.builder()
+                .message("Registration successful. Check your email for verification.")
+                .build();
+    }
 	
 	//upload avatar to cloudinary
 	private String uploadAvatarToCloudinary(MultipartFile avatar) {
@@ -90,28 +88,31 @@ public class AuthenticationService {
 
 	
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
-		// TODO Auto-generated method stub
-		try {
-			authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-			var user = userRepo.findByEmail(request.getEmail()).orElseThrow();
+            // Check if the user is active before generating the token
+            User user = (User) authentication.getPrincipal();
+            if (!user.isStatus()) {
+                throw new RuntimeException("User account is not active. Please verify your email.");
+            }
 
-			var jwtToken = jwtService.generateToken(user);
-			return AuthenticationResponse.builder()
-	                .token(jwtToken)
-	                .firstName(user.getFirstName())
-	                .lastName(user.getLastName())
-	                .fullName(user.getFullName())
-	                .DOB(user.getDOB())
-	                .studentID(user.getStudentID())
-	                .department(user.getDepartment())
-	                .avatarUrl(user.getAvatarUrl()) // Include the avatar URL
-	                .build();
-		} catch (Exception e) {
-			throw new RuntimeException("Authentication failed", e);
-		}
-	}
+            var jwtToken = jwtService.generateToken(user);
+            return AuthenticationResponse.builder()
+                    .token(jwtToken)
+                    .firstName(user.getFirstName())
+                    .lastName(user.getLastName())
+                    .fullName(user.getFullName())
+                    .DOB(user.getDOB())
+                    .studentID(user.getStudentID())
+                    .department(user.getDepartment())
+                    .avatarUrl(user.getAvatarUrl())
+                    .build();
+        } catch (Exception e) {
+            throw new RuntimeException("Authentication failed", e);
+        }
+    }
 
 	public User getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

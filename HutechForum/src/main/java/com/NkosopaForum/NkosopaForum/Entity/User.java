@@ -60,7 +60,8 @@ public class User extends BaseEntity<User> implements UserDetails{
 	@OneToMany(mappedBy = "user")
 	private List<Post> post = new ArrayList<>();
 
-	
+    private String verificationToken;
+
 	public List<Post> getPost() {
 		return post;
 	}
