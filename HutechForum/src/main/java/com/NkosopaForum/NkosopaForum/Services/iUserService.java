@@ -18,13 +18,14 @@ public interface iUserService {
 	
 	UserDTO getUserProfile(Long userId);
 
-    List<UserDTO> getFollowingUsers(Long userId);
+    List<UserDTO> getFollowingUsers();
 
-    List<UserDTO> getFollowers(Long userId);
+    List<UserDTO> getFollowers();
 
     boolean isFollowingUser(Long followerId, Long followingUserId);
 
-    UserDTO unfollowUser(Long followerId, Long followingUserId);
+//	UserDTO followUser(Long followingId);
+    void followUser(Long followingUserId);
+	void unfollowUser(Long followingUserId);
 
-	UserDTO followUser(Long followerId, Long followingId);
 }

@@ -3,7 +3,10 @@ package com.NkosopaForum.NkosopaForum.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
+import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Services.impl.UserService;
 
 @RestController
@@ -66,18 +70,18 @@ public class UserController {
     }
 
     // Get followers
-    @GetMapping("/followers/{userId}")
-    public ResponseEntity<List<UserDTO>> getFollowers(@PathVariable Long userId) {
-        List<UserDTO> followers = userService.getFollowers(userId);
+    @GetMapping("/followers")
+    public ResponseEntity<List<UserDTO>> getCurrentUserFollowers() {
+        List<UserDTO> followers = userService.getFollowers();
         return ResponseEntity.ok(followers);
     }
 
-    // Get following users
-    @GetMapping("/following/{userId}")
-    public ResponseEntity<List<UserDTO>> getFollowing(@PathVariable Long userId) {
-        List<UserDTO> following = userService.getFollowingUsers(userId);
+    @GetMapping("/following")
+    public ResponseEntity<List<UserDTO>> getCurrentUserFollowing() {
+        List<UserDTO> following = userService.getFollowingUsers();
         return ResponseEntity.ok(following);
     }
+
 
     // Check if a user is following another
     @GetMapping("/isFollowing/{followerId}/{followingUserId}")
@@ -87,26 +91,15 @@ public class UserController {
         return ResponseEntity.ok(isFollowing);
     }
 
-    @PostMapping("/followUser/{followerId}/{followingUserId}")
-    public ResponseEntity<UserDTO> followUser(
-            @PathVariable Long followerId,
-            @PathVariable Long followingUserId) {
-        
-        UserDTO updatedUser = userService.followUser(followerId, followingUserId);
-
-        if (updatedUser != null) {
-            return ResponseEntity.ok(updatedUser);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping("/follow/{followingId}")
+    public ResponseEntity<String> followUser(@PathVariable Long followingId) {
+        userService.followUser(followingId);
+        return ResponseEntity.ok("User followed successfully.");
     }
 
-    @PostMapping("/unfollowUser/{followerId}/{followingUserId}")
-    public ResponseEntity<UserDTO> unfollowUser(
-            @PathVariable Long followerId, @PathVariable Long followingUserId) {
-        UserDTO userDTO = userService.unfollowUser(followerId, followingUserId);
-        return userDTO != null ?
-                ResponseEntity.ok(userDTO) :
-                ResponseEntity.notFound().build();
+    @PostMapping("/unfollow/{followingId}")
+    public ResponseEntity<String> unfollowUser(@PathVariable Long followingId) {
+        userService.unfollowUser(followingId);
+        return ResponseEntity.ok("User unfollowed successfully.");
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Lob;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -48,11 +48,11 @@ public class User extends BaseEntity<User> implements UserDetails{
 	
 	private String fullName = firstName  + " " + lastName;
 	
-	@ManyToMany
-	private List<User> follower = new ArrayList<>();
-	
-	@ManyToMany
-	private List<User> following =  new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+    private List<User> follower = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<User> following = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;

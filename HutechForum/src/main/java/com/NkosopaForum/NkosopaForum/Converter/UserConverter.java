@@ -67,6 +67,7 @@ public class UserConverter {
 	        Hibernate.initialize(user.getFollowing());
 
 	        UserDTO dto = new UserDTO();
+	        dto.setId(user.getId());
 	        dto.setFullName(user.getFullName());
 	        dto.setCreatedDate(user.getCreatedDate());
 	        dto.setEmail(user.getEmail());
