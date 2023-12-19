@@ -2,6 +2,7 @@ package com.NkosopaForum.NkosopaForum.Services;
 
 import java.util.List;
 
+import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 
@@ -27,5 +28,7 @@ public interface iUserService {
 //	UserDTO followUser(Long followingId);
     void followUser(Long followingUserId);
 	void unfollowUser(Long followingUserId);
+
+	List<PostDTO> getPostsForCurrentUser();
 
 }

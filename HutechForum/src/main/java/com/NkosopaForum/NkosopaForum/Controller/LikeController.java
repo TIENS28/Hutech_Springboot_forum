@@ -11,6 +11,7 @@ import com.NkosopaForum.NkosopaForum.Services.impl.LikeServices;
 
 @RestController
 @RequestMapping("/api/auth/likes")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LikeController {
 
     @Autowired

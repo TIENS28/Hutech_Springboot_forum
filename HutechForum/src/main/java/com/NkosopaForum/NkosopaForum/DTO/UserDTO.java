@@ -21,6 +21,7 @@ public class UserDTO extends BaseDTO<UserDTO> {
     private String department;
     private List<UserDTO> followingUser =  new ArrayList<>();
     private List<UserDTO> followerUser = new ArrayList<>();
+    private List<PostDTO> userPost = new ArrayList<>();
     private boolean followed;
     private MultipartFile avatar;
     private String avatarUrl;
@@ -136,6 +137,13 @@ public class UserDTO extends BaseDTO<UserDTO> {
 	public void setAvatarUrl(String avatarUrl) {
 		this.avatarUrl = avatarUrl;
 	}
-    
+
+	public List<PostDTO> getUserPost() {
+		return userPost;
+	}
+
+	public void setUserPost(List<PostDTO> userPost) {
+		this.userPost = userPost;
+	}
 	
 }

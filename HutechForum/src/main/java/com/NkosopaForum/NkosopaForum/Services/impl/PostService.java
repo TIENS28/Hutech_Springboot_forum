@@ -1,5 +1,6 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +24,8 @@ public class PostService implements iPostServices {
 	@Autowired
 	private PostConverter postConvert;
 	
+	@Autowired 
+	private AuthenticationService authenticationService;
 	
 	@Override
 	public PostDTO save(PostDTO postDTO, Long id) {
@@ -60,14 +63,20 @@ public class PostService implements iPostServices {
 	            .collect(Collectors.toList());
 	}
 
-
 	@Override
-	public List<PostDTO> findPostsByUserId(Long userId) {
-        List<Post> posts = postRepo.findPostsByUserId(userId);
-        return posts.stream()
-                .map(postConvert::toDTO)
-                .collect(Collectors.toList());
-    }
+	public List<PostDTO> getPostsForCurrentUser() {
+	    User currentUser = authenticationService.getCurrentUser();
+
+	    if (currentUser != null) {
+	        List<Post> userPosts = currentUser.getPost();
+	        return userPosts.stream()
+	                .map(postConvert::toDTO)
+	                .collect(Collectors.toList());
+	    } else {
+	        return Collections.emptyList();
+	    }
+	}
+
 	
 	@Override
 	public List<PostDTO> findAllPostsOrderByCreatedDate() {

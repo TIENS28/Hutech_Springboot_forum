@@ -21,50 +21,54 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "post")
-public class Post extends BaseEntity<Post>{
-	
-	
+public class Post extends BaseEntity<Post> {
+
 	private String title;
-	
+
 	private String Description;
-	
+
 	private String Thumbnail;
-	
+
 	private String Content;
-	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<LikeEntity> likes = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CommentEntity> comments = new ArrayList<>();
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	
-	
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDescription() {
 		return Description;
 	}
+
 	public void setDescription(String description) {
 		Description = description;
 	}
+
 	public String getThumbnail() {
 		return Thumbnail;
 	}
+
 	public void setThumbnail(String thumbnail) {
 		Thumbnail = thumbnail;
 	}
+
 	public String getContent() {
 		return Content;
 	}
+
 	public void setContent(String content) {
 		Content = content;
 	}
@@ -72,9 +76,9 @@ public class Post extends BaseEntity<Post>{
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
+
 }

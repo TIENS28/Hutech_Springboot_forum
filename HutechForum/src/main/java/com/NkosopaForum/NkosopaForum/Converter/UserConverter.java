@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 
@@ -32,27 +33,27 @@ public class UserConverter {
 	    if (user != null && user.getId() != null) {
 	        dto.setId(user.getId());
 	    }
-	    if(user != null) {
-	    dto.setFullName(user.getFullName());
-	    dto.setPassword(user.getPassword());
-	    dto.setCreatedDate(user.getCreatedDate());
-	    dto.setEmail(user.getEmail());
-	    dto.setDOB(user.getDOB());
-	    dto.setDepartment(user.getDepartment());
-	    dto.setStudentID(user.getStudentID());
-        dto.setAvatarUrl(user.getAvatarUrl());
-        
-	    // Check if the 'follower' collection is initialized
-	    if (user.getFollower() != null && Hibernate.isInitialized(user.getFollower())) {
-	        // Access the 'follower' collection without triggering lazy initialization
-	        dto.setFollowerUser(EnitytoDTO(user.getFollower()));
-	    }
+	    if (user != null) {
+	        dto.setFullName(user.getFullName());
+	        dto.setPassword(user.getPassword());
+	        dto.setCreatedDate(user.getCreatedDate());
+	        dto.setEmail(user.getEmail());
+	        dto.setDOB(user.getDOB());
+	        dto.setDepartment(user.getDepartment());
+	        dto.setStudentID(user.getStudentID());
+	        dto.setAvatarUrl(user.getAvatarUrl());
 
-	    // Check if the 'following' collection is initialized
-	    if (user.getFollowing() != null && Hibernate.isInitialized(user.getFollowing())) {
-	        // Access the 'following' collection without triggering lazy initialization
-	        dto.setFollowingUser(EnitytoDTO(user.getFollowing()));
-	    }
+	        // Check if the 'follower' collection is initialized
+	        if (user.getFollower() != null && Hibernate.isInitialized(user.getFollower())) {
+	            // Access the 'follower' collection without triggering lazy initialization
+	            dto.setFollowerUser(EnitytoDTO(user.getFollower()));
+	        }
+
+	        // Check if the 'following' collection is initialized
+	        if (user.getFollowing() != null && Hibernate.isInitialized(user.getFollowing())) {
+	            // Access the 'following' collection without triggering lazy initialization
+	            dto.setFollowingUser(EnitytoDTO(user.getFollowing()));
+	        }
 	    }
 	    return dto;
 	}

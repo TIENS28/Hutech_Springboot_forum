@@ -105,10 +105,10 @@ public class PostConverter {
 			
 	        return dto;
 	    }
-
+	 
 	 public List<PostDTO> toDTOList(List<Post> posts) {
 	        return posts.stream()
 	                .map(this::toDTO)
 	                .collect(Collectors.toList());
-	    }
+	 }
 }

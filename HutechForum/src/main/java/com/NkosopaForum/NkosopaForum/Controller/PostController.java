@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.NkosopaForum.NkosopaForum.Services.impl.PostService;
 
 @RestController
 @RequestMapping("/api/auth/posts")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
 	@Autowired
@@ -66,18 +68,11 @@ public class PostController {
 		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
 		return ResponseEntity.ok(posts);
 	}
-		
-	@GetMapping("/allPostsByUser/{userId}")
-	public ResponseEntity<List<PostDTO>> getAllPostsByUser(@PathVariable Long userId) {
-	    List<PostDTO> posts = postService.findPostsByUserId(userId);
-
-	    for (PostDTO postDTO : posts) {
-	        List<CommentDTO> comments = cmtService.findByPostId(postDTO.getId());
-	        postDTO.setComments(comments);
-	    }
-
-	    return ResponseEntity.ok(posts);
-	}
 	
-	
+	  
+    @GetMapping("/user/post")
+    public ResponseEntity<List<PostDTO>> getPostsForCurrentUser() {
+    	List<PostDTO> posts = postService.getPostsForCurrentUser();
+		return ResponseEntity.ok(posts);
+    }
 }

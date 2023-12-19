@@ -3,10 +3,9 @@ package com.NkosopaForum.NkosopaForum.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +16,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
-import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.UserService;
 
 @RestController
 @RequestMapping("/api/auth/users")
-@CrossOrigin(origins = "http://localhost:5001")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
+    
+    @Autowired
+    private AuthenticationService authenticationService;
+    
     @PutMapping("/updateUser/{id}")
     public UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
@@ -68,7 +71,8 @@ public class UserController {
         UserDTO userProfile = userService.getUserProfile(userId);
         return ResponseEntity.ok(userProfile);
     }
-
+  
+    
     // Get followers
     @GetMapping("/followers")
     public ResponseEntity<List<UserDTO>> getCurrentUserFollowers() {

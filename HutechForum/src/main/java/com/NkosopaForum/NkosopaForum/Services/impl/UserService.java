@@ -1,15 +1,18 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
+import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
@@ -28,7 +31,10 @@ public class UserService implements iUserService {
 
 	@Autowired
 	private AuthenticationService authenticationService;
-	// save or update user service
+	
+	@Autowired
+	private PostConverter postConverter;
+	// save or update user
 	@Override
 	public UserDTO save(UserDTO userDTO, Long id) {
 		User newUser = new User();
@@ -79,15 +85,18 @@ public class UserService implements iUserService {
 
 	@Override
 	public UserDTO findByEmail(String email) {
-		// TODO Auto-generated method stub
-		Optional<User> userOptional = userRepo.findByEmail(email);
-		if (userOptional.isPresent()) {
-			User user = userOptional.get();
-			return userConverter.EnitytoDTO(user);
-		} else {
-			return null;
-		}
+	    Optional<User> userOptional = userRepo.findByEmail(email);
+	    if (userOptional.isPresent()) {
+	        User user = userOptional.get();
+	        List<PostDTO> userPostDTOs = postConverter.toDTOList(user.getPost());
+	        UserDTO userDTO = userConverter.EnitytoDTO(user);
+	        userDTO.setUserPost(userPostDTOs);
+	        return userDTO;
+	    } else {
+	        return null;
+	    }
 	}
+
 
 	@Override
 	public List<UserDTO> searchUser(String query) {
@@ -120,8 +129,7 @@ public class UserService implements iUserService {
 		Optional<User> followerOptional = userRepo.findById(followerId);
 		Optional<User> followingOptional = userRepo.findById(followingUserId);
 
-		// Check if both users exist and if the followerOptional is following the
-		// followingOptional
+		// Check if both users exist and if the followerOptional is following the followingOptional
 		return followerOptional.flatMap(
 				follower -> followingOptional.map(followingUser -> follower.getFollowing().contains(followingUser)))
 				.orElse(false);
@@ -164,4 +172,15 @@ public class UserService implements iUserService {
             userRepo.save(loggedInUser);
         }
     }
+	
+	@Override
+	public List<PostDTO> getPostsForCurrentUser() {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userEmail = authentication.getName();
+	    UserDTO currentUser = findByEmail(userEmail); 
+
+	    List<PostDTO> userPosts = currentUser.getUserPost();
+	    return userPosts;
+	}
+
 }
