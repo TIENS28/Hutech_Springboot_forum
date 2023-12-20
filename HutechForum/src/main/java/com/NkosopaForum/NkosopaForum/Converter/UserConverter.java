@@ -12,13 +12,16 @@ import org.springframework.stereotype.Component;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 
 @Component
 public class UserConverter {
 	@Autowired
 	@Lazy
 	private PostConverter postConverter;
-
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 	// for new user
 	public User UserToEntity(UserDTO dto) {
 		User entity = new User();
@@ -34,8 +37,11 @@ public class UserConverter {
 	        dto.setId(user.getId());
 	    }
 	    if (user != null) {
+	    	dto.setFirstName(user.getFirstName());
+	    	dto.setLastName(user.getLastName());
 	        dto.setFullName(user.getFullName());
 	        dto.setPassword(user.getPassword());
+//		    dto.setAvatarUrl(authenticationService.uploadAvatarToCloudinary(dto.getAvatar()));
 	        dto.setCreatedDate(user.getCreatedDate());
 	        dto.setEmail(user.getEmail());
 	        dto.setDOB(user.getDOB());

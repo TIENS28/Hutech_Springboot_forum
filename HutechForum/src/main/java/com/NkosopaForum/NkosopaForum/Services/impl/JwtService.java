@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,8 +29,20 @@ public class JwtService {
 	}
 	
 	private static final String SECRECT_KEY = "15DEDCFE75B66FB9ABABF86C91ADDB7C4F295CA38C5E761A7A56C983B7";
+
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
+	}
+	
+	public String generateResetPasswordToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+		return Jwts
+				.builder()
+				.setClaims(extraClaims)
+				.setSubject(userDetails.getUsername())
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + 31536000000L))
+				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
+				.compact();
 	}
 	
 	public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
@@ -42,6 +55,7 @@ public class JwtService {
 				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
 				.compact();
 	}	
+
 	private Claims extractAllClaims(String token) {
 		return Jwts
 				.parserBuilder()
@@ -50,6 +64,8 @@ public class JwtService {
 				.parseClaimsJws(token)
 				.getBody();
 	}
+	
+	
 	
 	public boolean isTokenValid(String token, UserDetails userDetails) {
 		final String username = extractUsername(token);

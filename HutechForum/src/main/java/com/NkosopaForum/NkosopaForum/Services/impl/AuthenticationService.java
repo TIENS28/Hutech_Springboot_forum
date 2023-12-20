@@ -44,7 +44,8 @@ public class AuthenticationService {
 
 	@Autowired
     private RegistrationService registrationService;
-
+	
+	// REGISTER AND AUTHENTICATE METHOD
 	public AuthenticationResponse registerWithVerification(RegisterRequest request, MultipartFile avatar) {
         if (userRepo.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email is already bind with other account!");
@@ -77,7 +78,7 @@ public class AuthenticationService {
     }
 	
 	//upload avatar to cloudinary
-	private String uploadAvatarToCloudinary(MultipartFile avatar) {
+	public String uploadAvatarToCloudinary(MultipartFile avatar) {
 	    try {
 	        Map uploadResult = cloudinary.uploader().upload(avatar.getBytes(), ObjectUtils.emptyMap());
 	        return (String) uploadResult.get("url");

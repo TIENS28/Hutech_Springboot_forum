@@ -7,12 +7,11 @@ import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 
 public interface iUserService {
-	UserDTO save(UserDTO userDTO, Long id);
 	
 	void delete(Long id);
 	
 	List<UserDTO> findAll();
-	
+	UserDTO updateProfile(UserDTO userDTO);
 	UserDTO findByEmail(String email);
 		
 	public List<UserDTO> searchUser(String query);
@@ -31,4 +30,5 @@ public interface iUserService {
 
 	List<PostDTO> getPostsForCurrentUser();
 
+//	UserDTO save(UserDTO userDTO);
 }

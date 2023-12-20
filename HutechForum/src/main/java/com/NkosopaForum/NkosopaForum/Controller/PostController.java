@@ -3,6 +3,8 @@ package com.NkosopaForum.NkosopaForum.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
@@ -54,6 +57,16 @@ public class PostController {
 		commentDTO.setPostId(postId);
 		CommentDTO newComment = cmtService.save(commentDTO);
 		return ResponseEntity.ok(newComment);
+	}
+	
+	@GetMapping("/searchPost/{query}")
+	public ResponseEntity<Page<PostDTO>> searchPost(
+	    @PathVariable String query,
+	    @RequestParam(defaultValue = "0") int page,
+	    @RequestParam(defaultValue = "5") int size
+	) {
+	    Page<PostDTO> postPage = postService.searchPost(query, PageRequest.of(page, size));
+	    return ResponseEntity.ok(postPage);
 	}
 	
 	@GetMapping("/{postId}/comments")
