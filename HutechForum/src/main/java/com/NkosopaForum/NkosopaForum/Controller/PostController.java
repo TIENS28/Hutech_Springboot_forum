@@ -36,7 +36,14 @@ public class PostController {
 	@Autowired
 	private CommentServices cmtService;
 	
-
+	@GetMapping("/admin/posts")
+	public ResponseEntity<List<PostDTO>> findAll(
+	    @RequestParam(defaultValue = "0") int page,
+	    @RequestParam(defaultValue = "5") int size) {
+	    List<PostDTO> postPage = postService.findAll(PageRequest.of(page, size));
+	    return ResponseEntity.ok(postPage);
+	}
+	
 	@PostMapping("/newPost")
 	public PostDTO savePost(@ModelAttribute PostDTO postDTO,
 							@RequestParam(name = "thumbnail", required = false) MultipartFile thumbnail) {

@@ -104,6 +104,7 @@ public class AuthenticationService {
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .fullName(user.getFullName())
+                    .role(user.getRole())
                     .DOB(user.getDOB())
                     .studentID(user.getStudentID())
                     .department(user.getDepartment())

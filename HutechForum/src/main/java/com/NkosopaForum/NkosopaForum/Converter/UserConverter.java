@@ -21,8 +21,10 @@ public class UserConverter {
 	private PostConverter postConverter;
 	
 	@Autowired
-	private AuthenticationService authenticationService;
-	// for new user
+	@Lazy
+	private RoleConverter roleConverter;
+	
+	
 	public User UserToEntity(UserDTO dto) {
 		User entity = new User();
 		updateEntityFromDTO(entity, dto);
@@ -43,6 +45,7 @@ public class UserConverter {
 	        dto.setPassword(user.getPassword());
 	        dto.setCreatedDate(user.getCreatedDate());
 	        dto.setEmail(user.getEmail());
+	        dto.setRole(roleConverter.toDTO(user.getRole()));
 	        dto.setDOB(user.getDOB());
 	        dto.setDepartment(user.getDepartment());
 	        dto.setStudentID(user.getStudentID());
@@ -76,6 +79,7 @@ public class UserConverter {
 	        dto.setId(user.getId());
 	        dto.setFullName(user.getFullName());
 	        dto.setCreatedDate(user.getCreatedDate());
+	        dto.setRole(roleConverter.toDTO(user.getRole()));
 	        dto.setEmail(user.getEmail());
 	        dto.setDOB(user.getDOB());
 	        dto.setDepartment(user.getDepartment());

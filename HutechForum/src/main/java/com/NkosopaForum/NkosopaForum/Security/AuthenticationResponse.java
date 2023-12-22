@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.NkosopaForum.NkosopaForum.Entity.Post;
+import com.NkosopaForum.NkosopaForum.Entity.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class AuthenticationResponse {
 	private String lastName;
 	private String fullName;
 	private String DOB;
+	private Role role;
 	private String studentID;
 	private String department;
 	private LocalDateTime createdDate;

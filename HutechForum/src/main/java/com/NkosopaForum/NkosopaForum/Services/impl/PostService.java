@@ -16,6 +16,7 @@ import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
+import com.NkosopaForum.NkosopaForum.Entity.Role;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
@@ -47,7 +48,6 @@ public class PostService implements iPostServices {
         String thumbnailUrl = authenticationService.uploadAvatarToCloudinary(thumbnail);
 		if (postDTO.getId() == null) {
 	        User curentUser = authenticationService.getCurrentUser();
-	        System.out.print(curentUser.getId());
 			postDTO.setUser(userConverter.EnitytoDTO(curentUser));
 	        postDTO.setThumbnailUrl(thumbnailUrl);
 	        
@@ -73,25 +73,31 @@ public class PostService implements iPostServices {
 	
 	@Override
 	public void delete(Long id) {
-		Optional<Post> optionalPost = postRepo.findById(id);
-		
+	    Optional<Post> optionalPost = postRepo.findById(id);
+
 	    if (optionalPost.isPresent()) {
-	    	Post post = optionalPost.get();
-	    	User currentUser = authenticationService.getCurrentUser();
-	    	if(post.getUser().getId().equals(currentUser.getId())) {
-	    		post.getComments().clear();
-	    		postRepo.delete(post);	
-	    	}
-	    	else {
-	            throw new EntityNotFoundException("Use are not post owner");
-	    	}
+	        Post post = optionalPost.get();
+	        User currentUser = authenticationService.getCurrentUser();
+
+	        if (currentUser.getRole() == Role.ADMIN) {
+	            // Admins can delete any post
+	            post.getComments().clear();
+	            postRepo.delete(post);
+	        } else if (post.getUser().getId().equals(currentUser.getId())) {
+	            // Regular users can only delete their own posts
+	            post.getComments().clear();
+	            postRepo.delete(post);
+	        } else {
+	            throw new EntityNotFoundException("User is not the post owner, and not an admin");
+	        }
 	    } else {
-	    	System.out.print("Post not found");
+	        throw new EntityNotFoundException("Post not found");
 	    }
 	}
 
+
 	@Override
-	public List<PostDTO> findAll() {
+	public List<PostDTO> findAll(Pageable pageable) {
 	    List<Post> posts = postRepo.findAll();
 	    return posts.stream()
 	            .map(postConvert::toDTO)
@@ -132,11 +138,5 @@ public class PostService implements iPostServices {
                 .map(postConvert::toDTO)
                 .collect(Collectors.toList());
     }
-
-	@Override
-	public List<PostDTO> findAll(User currentUser) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
