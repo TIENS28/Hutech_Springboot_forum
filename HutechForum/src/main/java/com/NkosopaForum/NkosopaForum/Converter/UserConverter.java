@@ -41,7 +41,6 @@ public class UserConverter {
 	    	dto.setLastName(user.getLastName());
 	        dto.setFullName(user.getFullName());
 	        dto.setPassword(user.getPassword());
-//		    dto.setAvatarUrl(authenticationService.uploadAvatarToCloudinary(dto.getAvatar()));
 	        dto.setCreatedDate(user.getCreatedDate());
 	        dto.setEmail(user.getEmail());
 	        dto.setDOB(user.getDOB());

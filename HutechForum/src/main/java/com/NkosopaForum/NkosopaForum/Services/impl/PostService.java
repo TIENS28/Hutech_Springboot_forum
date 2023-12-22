@@ -9,13 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
+import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
 import com.NkosopaForum.NkosopaForum.Services.iPostServices;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class PostService implements iPostServices {
@@ -29,29 +37,54 @@ public class PostService implements iPostServices {
 	@Autowired 
 	private AuthenticationService authenticationService;
 	
+	@Autowired
+	private UserConverter userConverter;
+	
 	@Override
-	public PostDTO save(PostDTO postDTO, Long id) {
+	public PostDTO save(PostDTO postDTO, Long id, MultipartFile thumbnail) {
+		
 		Post newPost = new Post();
+        String thumbnailUrl = authenticationService.uploadAvatarToCloudinary(thumbnail);
 		if (postDTO.getId() == null) {
+	        User curentUser = authenticationService.getCurrentUser();
+	        System.out.print(curentUser.getId());
+			postDTO.setUser(userConverter.EnitytoDTO(curentUser));
+	        postDTO.setThumbnailUrl(thumbnailUrl);
+	        
 			newPost = postConvert.PostToEntity(postDTO);
 		} else {
 			Optional<Post> OldoptionalPost = postRepo.findById(postDTO.getId());
 
 			if (OldoptionalPost.isPresent()) {
 				Post oldPost = OldoptionalPost.get();
-				newPost = postConvert.DtoToEntity(postDTO, oldPost);
+				User currentUser = authenticationService.getCurrentUser();
+				if(oldPost.getUser().getId().equals(currentUser.getId())) {
+					String newThumbnail = authenticationService.uploadAvatarToCloudinary(thumbnail);
+					newPost.setThumbnailUrl(newThumbnail);
+					newPost = postConvert.DtoToEntity(postDTO, oldPost);
+				}else {
+		            throw new EntityNotFoundException("Use are not post owner");
+				}
 			}
 		}
 		postRepo.save(newPost);
 		return postConvert.toDTO(newPost);
 	}
-
+	
 	@Override
 	public void delete(Long id) {
-		Optional<Post> post = postRepo.findById(id);
-	    if (post.isPresent()) {
-	        Post postToDelete = post.get();
-	        postRepo.delete(postToDelete);	
+		Optional<Post> optionalPost = postRepo.findById(id);
+		
+	    if (optionalPost.isPresent()) {
+	    	Post post = optionalPost.get();
+	    	User currentUser = authenticationService.getCurrentUser();
+	    	if(post.getUser().getId().equals(currentUser.getId())) {
+	    		post.getComments().clear();
+	    		postRepo.delete(post);	
+	    	}
+	    	else {
+	            throw new EntityNotFoundException("Use are not post owner");
+	    	}
 	    } else {
 	    	System.out.print("Post not found");
 	    }

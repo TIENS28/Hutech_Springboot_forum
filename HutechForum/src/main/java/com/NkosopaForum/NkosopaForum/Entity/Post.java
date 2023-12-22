@@ -27,14 +27,16 @@ public class Post extends BaseEntity<Post> {
 
 	private String Description;
 
-	private String Thumbnail;
-
 	private String Content;
-
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	
+	private String thumbnailUrl;
+	
+	@Builder.Default
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<LikeEntity> likes = new ArrayList<>();
 
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Builder.Default
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<CommentEntity> comments = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -55,14 +57,6 @@ public class Post extends BaseEntity<Post> {
 
 	public void setDescription(String description) {
 		Description = description;
-	}
-
-	public String getThumbnail() {
-		return Thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		Thumbnail = thumbnail;
 	}
 
 	public String getContent() {

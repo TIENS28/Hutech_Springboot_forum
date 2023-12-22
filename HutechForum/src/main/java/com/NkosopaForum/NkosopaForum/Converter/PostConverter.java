@@ -36,10 +36,11 @@ public class PostConverter {
 		Post entity = new Post();
 		entity.setId(dto.getId());
 		entity.setTitle(dto.getTitle());
-		entity.setThumbnail(dto.getThumbnail());
+		entity.setThumbnailUrl(dto.getThumbnailUrl());
 		entity.setDescription(dto.getDescription());
 		entity.setContent(dto.getContent());
 		entity.setCreatedDate(LocalDateTime.now());
+		entity.setThumbnailUrl(dto.getThumbnailUrl());
 		if (dto.getUser() != null) {
 			User user = new User();
 			user.setId(dto.getUser().getId());
@@ -47,7 +48,6 @@ public class PostConverter {
 			user.setLastName(dto.getUser().getLastName());
 			entity.setUser(user);
 		}
-		
 		entity.setCreatedBy(dto.getUser().getFullName());
 		return entity;
 	}
@@ -58,7 +58,7 @@ public class PostConverter {
 		}else {
 		
 		entity.setTitle(dto.getTitle());
-		entity.setThumbnail(dto.getThumbnail());
+		entity.setThumbnailUrl(dto.getThumbnailUrl());
 		entity.setDescription(dto.getDescription());
 		entity.setContent(dto.getContent());
 		entity.setModifiedDate(LocalDateTime.now());
@@ -77,28 +77,21 @@ public class PostConverter {
 	 public PostDTO toDTO(Post entity) {
 	        PostDTO dto = new PostDTO();
 
-	        User user = authService.getCurrentUser();
-	        Hibernate.initialize(entity.getUser().getFollower());
 	        Hibernate.initialize(entity.getLikes());
 	        
-	        boolean isLiked = PostUtil.isLikedByUser(user, entity);
-
 	        if (entity.getId() != null) {
 	            dto.setId(entity.getId());
 	        }
 	        dto.setTitle(entity.getTitle());
 	        dto.setContent(entity.getContent());
 	        dto.setDescription(entity.getDescription());
-	        dto.setThumbnail(entity.getThumbnail());
+	        dto.setThumbnailUrl(entity.getThumbnailUrl());
 	        dto.setCreatedDate(entity.getCreatedDate());
 	        dto.setCreatedBy(entity.getCreatedBy());
 	        dto.setTotalLikes(entity.getLikes().size());
-	        dto.setTotalComments(entity.getComments().size());
-	        dto.setLiked(isLiked);
-	        dto.setModifiedDate(entity.getModifiedDate());
-	        dto.setModifiedBy(entity.getUser().getUsername());
 	        dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
-	        dto.setCurrentUser(userConverter.EnitytoDTO(user));
+	        dto.setTotalComments(entity.getComments().size());
+	        dto.setModifiedDate(entity.getModifiedDate());
 	       
 			List<CommentDTO> comments = cmtService.findByPostId(dto.getId());
 			dto.setComments(comments);

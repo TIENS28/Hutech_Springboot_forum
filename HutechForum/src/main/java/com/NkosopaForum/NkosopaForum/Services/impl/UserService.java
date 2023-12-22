@@ -17,6 +17,7 @@ import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.CommentEntity;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iUserService;
 
@@ -43,7 +44,7 @@ public class UserService implements iUserService {
 	    // Extract user ID from the DTO
 	    Long userId = userDTO.getId();
 	    if (userId != null) {
-	        Optional<User> optionalUser = userRepo.findById(userId);
+	        Optional<User> optionalUser = userRepo.findById(userId);	
 
 	        if (optionalUser.isPresent()) {
 	            // User found, update the profile
@@ -74,18 +75,11 @@ public class UserService implements iUserService {
 
 		if (optionalUser.isPresent()) {
 			User user = optionalUser.get();
-
-			// delete all user's posts/comments
-			for (CommentEntity comment : user.getComment()) {
-	            comment.setUser(null); 
-	        }
-	        user.getComment().clear();
-
-	        for (Post post : user.getPost()) {
-	            post.setUser(null); 
-	        }
-	        user.getPost().clear();
-
+			user.getComment().clear();
+			for(Post post : user.getPost()) {
+				post.getComments().clear();
+			}
+			user.getPost().clear();
 			userRepo.deleteById(id);
 		} else {
 			throw new EntityNotFoundException("User not found with ID: " + id);

@@ -3,6 +3,8 @@ package com.NkosopaForum.NkosopaForum.DTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -10,7 +12,6 @@ public class PostDTO extends BaseDTO<PostDTO> {
 
     private String title;
     private String description;
-    private String thumbnail;
     private String content;
 	private List<CommentDTO> comments = new ArrayList<>();
     private UserDTO user;
@@ -18,6 +19,8 @@ public class PostDTO extends BaseDTO<PostDTO> {
     private int totalLikes;
     private int totalComments;
     private UserDTO currentUser;
+    private MultipartFile thumbnail;
+    private String thumbnailUrl;
 
     public UserDTO getCurrentUser() {
         return currentUser;
@@ -42,12 +45,13 @@ public class PostDTO extends BaseDTO<PostDTO> {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getThumbnail() {
+    
+    
+    public MultipartFile getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(String thumbnail) {
+    public void setThumbnail(MultipartFile thumbnail) {
         this.thumbnail = thumbnail;
     }
 
@@ -122,6 +126,14 @@ public class PostDTO extends BaseDTO<PostDTO> {
 
 	public void setLiked(boolean isLiked) {
 		this.isLiked = isLiked;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
 	}
    
 }

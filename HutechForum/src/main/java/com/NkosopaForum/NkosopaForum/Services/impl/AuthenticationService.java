@@ -77,7 +77,6 @@ public class AuthenticationService {
                 .build();
     }
 	
-	//upload avatar to cloudinary
 	public String uploadAvatarToCloudinary(MultipartFile avatar) {
 	    try {
 	        Map uploadResult = cloudinary.uploader().upload(avatar.getBytes(), ObjectUtils.emptyMap());
