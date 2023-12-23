@@ -15,7 +15,6 @@ import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
-import com.NkosopaForum.NkosopaForum.util.PostUtil;
 
 @Component
 public class PostConverter {

@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
-import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 
 @Component
 public class UserConverter {

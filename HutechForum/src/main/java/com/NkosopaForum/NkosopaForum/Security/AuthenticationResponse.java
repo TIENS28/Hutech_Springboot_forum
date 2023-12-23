@@ -29,6 +29,8 @@ public class AuthenticationResponse {
 	private Long avatarFileSize;
 	private String avatarUrl;
 	private String message; // Add a message field
+	
+	@Builder.Default
 	private List<Post> post = new ArrayList<>();
 	
 }

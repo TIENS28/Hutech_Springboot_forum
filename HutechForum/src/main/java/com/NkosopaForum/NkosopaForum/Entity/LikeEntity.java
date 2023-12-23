@@ -1,9 +1,6 @@
 package com.NkosopaForum.NkosopaForum.Entity;
 
-import java.util.Optional;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
