@@ -15,16 +15,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
+import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.Role;
 import com.NkosopaForum.NkosopaForum.Entity.User;
-import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
 import com.NkosopaForum.NkosopaForum.Services.iPostServices;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.PersistenceContext;
 
 @Service
 public class PostService implements iPostServices {
@@ -41,11 +39,15 @@ public class PostService implements iPostServices {
 	@Autowired
 	private UserConverter userConverter;
 	
+	@Autowired
+	private CommentServices commentServices;
+	
+	//another way is get current user by extract jwt token
 	@Override
 	public PostDTO save(PostDTO postDTO, Long id, MultipartFile thumbnail) {
 		
 		Post newPost = new Post();
-        String thumbnailUrl = authenticationService.uploadAvatarToCloudinary(thumbnail);
+        String thumbnailUrl = authenticationService.uploadImageToCloudinary(thumbnail);
 		if (postDTO.getId() == null) {
 	        User curentUser = authenticationService.getCurrentUser();
 			postDTO.setUser(userConverter.EnitytoDTO(curentUser));
@@ -59,7 +61,7 @@ public class PostService implements iPostServices {
 				Post oldPost = OldoptionalPost.get();
 				User currentUser = authenticationService.getCurrentUser();
 				if(oldPost.getUser().getId().equals(currentUser.getId())) {
-					String newThumbnail = authenticationService.uploadAvatarToCloudinary(thumbnail);
+					String newThumbnail = authenticationService.uploadImageToCloudinary(thumbnail);
 					newPost.setThumbnailUrl(newThumbnail);
 					newPost = postConvert.DtoToEntity(postDTO, oldPost);
 				}else {
@@ -72,6 +74,7 @@ public class PostService implements iPostServices {
 	}
 	
 	@Override
+	@Transactional
 	public void delete(Long id) {
 	    Optional<Post> optionalPost = postRepo.findById(id);
 
@@ -79,16 +82,11 @@ public class PostService implements iPostServices {
 	        Post post = optionalPost.get();
 	        User currentUser = authenticationService.getCurrentUser();
 
-	        if (currentUser.getRole() == Role.ADMIN) {
-	            // Admins can delete any post
-	            post.getComments().clear();
-	            postRepo.delete(post);
-	        } else if (post.getUser().getId().equals(currentUser.getId())) {
-	            // Regular users can only delete their own posts
-	            post.getComments().clear();
-	            postRepo.delete(post);
+	        if (post.getUser().getId().equals(currentUser.getId()) || currentUser.getRole() == Role.ADMIN) {
+	        	commentServices.deleteAllByPostId(id);
+	        	postRepo.deletePostById(id);
 	        } else {
-	            throw new EntityNotFoundException("User is not the post owner, and not an admin");
+	            throw new EntityNotFoundException("You are not the post owner, and not an admin");
 	        }
 	    } else {
 	        throw new EntityNotFoundException("Post not found");
@@ -132,11 +130,21 @@ public class PostService implements iPostServices {
 	            .collect(Collectors.toList());
 	}
 	
-	@Override
-	public List<PostDTO> findAllPostsWithComments() {
-        return postRepo.findAllWithComments().stream()
-                .map(postConvert::toDTO)
-                .collect(Collectors.toList());
-    }
 
+	@Override
+    public PostDTO findPostById(Long postId) {
+        Optional<Post> postOptional = postRepo.findById(postId);
+
+        if (postOptional.isPresent()) {
+            Post post = postOptional.get();
+            return postConvert.toDTO(post);
+        } else {
+            throw new EntityNotFoundException("Post not found");
+        }
+    }
+	
+	@Transactional
+	void deleteAllByUserId(Long userId) {
+		postRepo.deleteAllByUserId(userId);
+	}
 }

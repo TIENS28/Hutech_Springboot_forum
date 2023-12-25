@@ -49,46 +49,36 @@ public class UserConverter {
 	        dto.setStudentID(user.getStudentID());
 	        dto.setAvatarUrl(user.getAvatarUrl());
 
-	        // Check if the 'follower' collection is initialized
-	        if (user.getFollower() != null && Hibernate.isInitialized(user.getFollower())) {
-	            // Access the 'follower' collection without triggering lazy initialization
-	            dto.setFollowerUser(EnitytoDTO(user.getFollower()));
-	        }
-
-	        // Check if the 'following' collection is initialized
-	        if (user.getFollowing() != null && Hibernate.isInitialized(user.getFollowing())) {
-	            // Access the 'following' collection without triggering lazy initialization
-	            dto.setFollowingUser(EnitytoDTO(user.getFollowing()));
-	        }
 	    }
 	    return dto;
 	}
 
+//	Non-used method, extends in future 
+//	public List<UserDTO> EnitytoDTO(List<User> followers) {
+//	    List<UserDTO> userDTOs = new ArrayList<>();
+//
+//	    for (User user : followers) {
+//	        // Initialize the 'follower' and 'following' collections within an active Hibernate session
+//	        Hibernate.initialize(user.getFollower());
+//	        Hibernate.initialize(user.getFollowing());
+//
+//	        UserDTO dto = new UserDTO();
+//	        dto.setId(user.getId());
+//	        dto.setFullName(user.getFullName());
+//	        dto.setCreatedDate(user.getCreatedDate());
+//	        dto.setRole(roleConverter.toDTO(user.getRole()));
+//	        dto.setEmail(user.getEmail());
+//	        dto.setDOB(user.getDOB());
+//	        dto.setDepartment(user.getDepartment());
+//	        dto.setStudentID(user.getStudentID());
+//	        userDTOs.add(dto);
+//	    }
+//
+//	    return userDTOs;
+//	}
 
-	public List<UserDTO> EnitytoDTO(List<User> followers) {
-	    List<UserDTO> userDTOs = new ArrayList<>();
-
-	    for (User user : followers) {
-	        // Initialize the 'follower' and 'following' collections within an active Hibernate session
-	        Hibernate.initialize(user.getFollower());
-	        Hibernate.initialize(user.getFollowing());
-
-	        UserDTO dto = new UserDTO();
-	        dto.setId(user.getId());
-	        dto.setFullName(user.getFullName());
-	        dto.setCreatedDate(user.getCreatedDate());
-	        dto.setRole(roleConverter.toDTO(user.getRole()));
-	        dto.setEmail(user.getEmail());
-	        dto.setDOB(user.getDOB());
-	        dto.setDepartment(user.getDepartment());
-	        dto.setStudentID(user.getStudentID());
-	        userDTOs.add(dto);
-	    }
-
-	    return userDTOs;
-	}
-
-	// for update user information
+// for update user information
+	
 	public User DtoToEnity(UserDTO dto, User entity) {
 		if (dto.getId() == null) {
 			return null;

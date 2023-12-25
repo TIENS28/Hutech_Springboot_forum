@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.NkosopaForum.NkosopaForum.Entity.Role;
@@ -18,6 +19,7 @@ import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Security.AuthenticationRequest;
 import com.NkosopaForum.NkosopaForum.Security.AuthenticationResponse;
 import com.NkosopaForum.NkosopaForum.Security.RegisterRequest;
+import com.NkosopaForum.NkosopaForum.Services.iAuthenticationService;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
@@ -25,14 +27,11 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationService implements iAuthenticationService{
 
 	@Autowired
 	private UserRepository userRepo;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
+	
 	@Autowired
 	private JwtService jwtService;
 
@@ -46,13 +45,15 @@ public class AuthenticationService {
     private RegistrationService registrationService;
 	
 	// REGISTER AND AUTHENTICATE METHOD
+	@Override
 	public AuthenticationResponse registerWithVerification(RegisterRequest request, MultipartFile avatar) {
-        if (userRepo.existsByEmail(request.getEmail())) {
+		
+		if (userRepo.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email is already bind with other account!");
         }
-
-        String avatarUrl = uploadAvatarToCloudinary(avatar);
-
+        
+        String avatarUrl = uploadImageToCloudinary(avatar);
+        
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -61,32 +62,31 @@ public class AuthenticationService {
                 .DOB(request.getDOB())
                 .department(request.getDepartment())
                 .studentID(request.getStudentID())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(request.getPassword())
                 .role(Role.USER)
                 .avatarUrl(avatarUrl)
                 .build();
-
-        userRepo.save(user);
-
-        // Call the registration service to initiate email verification
-        registrationService.register(user);
-
-        // Generate and return the authentication response with a message
+		if (user.getPassword() == null || user.getPassword().isEmpty()) {
+	        throw new RuntimeException("Password is required");
+	    }else {
+	        registrationService.register(user);
+	    }
         return AuthenticationResponse.builder()
                 .message("Registration successful. Check your email for verification.")
                 .build();
     }
 	
-	public String uploadAvatarToCloudinary(MultipartFile avatar) {
+	@Override
+	public String uploadImageToCloudinary(MultipartFile image) {
 	    try {
-	        Map uploadResult = cloudinary.uploader().upload(avatar.getBytes(), ObjectUtils.emptyMap());
+	        Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
 	        return (String) uploadResult.get("url");
 	    } catch (IOException e) {
 	        throw new RuntimeException("Failed to upload avatar to Cloudinary", e);
 	    }
 	}
 
-	
+	@Override
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -115,6 +115,7 @@ public class AuthenticationService {
         }
     }
 
+	@Override
 	public User getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

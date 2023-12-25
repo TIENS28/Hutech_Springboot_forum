@@ -30,19 +30,22 @@ public class AuthenticationController {
     private RegistrationService registrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@ModelAttribute RegisterRequest request, @RequestParam("avatar") MultipartFile avatar) {
+    public ResponseEntity<?> register(
+        @ModelAttribute RegisterRequest request,
+        @RequestParam("avatar") MultipartFile avatar) {
         AuthenticationResponse response = authService.registerWithVerification(request, avatar);
-        if (response != null && response.getMessage().equals("Registration successful. Check your email for verification.")) {
+        if (response != null) {
             return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.badRequest().body("Registration failed");
+            return ResponseEntity.badRequest().body(response);
         }
     }
-    
+
+
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
-        return ResponseEntity.ok(authService.authenticate(request));
-    }
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
+	    return ResponseEntity.ok(authService.authenticate(request));
+	}
 
     @GetMapping("/confirm")
     public ResponseEntity<String> confirmRegistration(@RequestParam("token") String token) {

@@ -33,17 +33,7 @@ public class JwtService {
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
 	}
-	
-	public String generateResetPasswordToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-		return Jwts
-				.builder()
-				.setClaims(extraClaims)
-				.setSubject(userDetails.getUsername())
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 31536000000L))
-				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
-				.compact();
-	}
+
 	
 	public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		return Jwts
@@ -76,8 +66,6 @@ public class JwtService {
 		return extractExpiration(token).before(new Date());
 	}
 	
-	
-
 	private Date extractExpiration(String token) {
 		return extractClaim(token, Claims::getExpiration);
 	}

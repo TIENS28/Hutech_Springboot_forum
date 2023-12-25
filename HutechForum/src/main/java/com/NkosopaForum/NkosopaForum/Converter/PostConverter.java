@@ -13,7 +13,6 @@ import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
-import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 
 @Component
@@ -22,10 +21,6 @@ public class PostConverter {
 	@Autowired
 	@Lazy
 	private UserConverter userConverter;
-    
-	@Autowired
-	@Lazy
-	private AuthenticationService authService;
 	
 	@Autowired
 	@Lazy
@@ -75,8 +70,6 @@ public class PostConverter {
 
 	 public PostDTO toDTO(Post entity) {
 	        PostDTO dto = new PostDTO();
-
-	        Hibernate.initialize(entity.getLikes());
 	        
 	        if (entity.getId() != null) {
 	            dto.setId(entity.getId());
@@ -87,7 +80,6 @@ public class PostConverter {
 	        dto.setThumbnailUrl(entity.getThumbnailUrl());
 	        dto.setCreatedDate(entity.getCreatedDate());
 	        dto.setCreatedBy(entity.getCreatedBy());
-	        dto.setTotalLikes(entity.getLikes().size());
 	        dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
 	        dto.setTotalComments(entity.getComments().size());
 	        dto.setModifiedDate(entity.getModifiedDate());

@@ -28,7 +28,7 @@ public class AuthenticationResponse {
 	private LocalDateTime createdDate;
 	private Long avatarFileSize;
 	private String avatarUrl;
-	private String message; // Add a message field
+	private String message;
 	
 	@Builder.Default
 	private List<Post> post = new ArrayList<>();

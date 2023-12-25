@@ -30,10 +30,7 @@ public class Post extends BaseEntity<Post> {
 	private String Content;
 	
 	private String thumbnailUrl;
-	
-	@Builder.Default
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	private List<LikeEntity> likes = new ArrayList<>();
+
 
 	@Builder.Default
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)

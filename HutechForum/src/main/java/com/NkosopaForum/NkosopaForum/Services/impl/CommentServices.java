@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.NkosopaForum.NkosopaForum.Converter.CommentConverter;
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
@@ -29,12 +30,9 @@ public class CommentServices implements iCommentService {
 	private PostRepository postRepo;
 
 	@Autowired
-	private UserRepository userRepo;
-
-	@Autowired
 	private CommentRepository cmtRepo;
 
-	@Autowired
+	@Autowired	
 	private AuthenticationService authenticationService;
 
 	@Override
@@ -73,5 +71,15 @@ public class CommentServices implements iCommentService {
 		}
 		return rs;
 	}
-
+	
+	@Transactional
+	public void deleteAllByUserId(Long userId) {
+	    cmtRepo.deleteAllByUserId(userId);
+	}
+	
+	@Transactional
+	public void deleteAllByPostId(Long postId) {
+		cmtRepo.deleteAllByPostId(postId);
+	}
+	
 }

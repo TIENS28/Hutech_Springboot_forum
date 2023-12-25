@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -45,16 +46,10 @@ public class User extends BaseEntity<User> implements UserDetails{
 	private String department;
 	
 	private String avatarUrl	;
-	
+		
 	private String email;
 	
 	private String fullName = firstName  + " " + lastName;
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-    private List<User> follower = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<User> following = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -64,6 +59,7 @@ public class User extends BaseEntity<User> implements UserDetails{
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CommentEntity> comment = new ArrayList<>();
+	
 	
     private String verificationToken;
 
@@ -76,7 +72,8 @@ public class User extends BaseEntity<User> implements UserDetails{
 	public void setPost(List<Post> post) {
 		this.post = post;
 	}
-
+	
+	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

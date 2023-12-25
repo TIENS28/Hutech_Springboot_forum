@@ -28,7 +28,9 @@ public class RegistrationService implements iRegistrationService {
 
 	@Override
 	public void register(User user) {
-		user.setStatus(false); // You can use the status field for verification status
+		
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setStatus(false);
 		user.setVerificationToken(UUID.randomUUID().toString());
 		userRepository.save(user);
 

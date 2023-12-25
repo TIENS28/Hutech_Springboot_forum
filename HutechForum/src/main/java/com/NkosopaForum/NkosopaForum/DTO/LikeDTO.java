@@ -17,6 +17,4 @@ public class LikeDTO extends BaseDTO<LikeDTO>{
 		this.post = post;
 	}
 	
-	
-
 }

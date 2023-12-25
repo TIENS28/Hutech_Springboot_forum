@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,10 +43,18 @@ public class PostController {
 	    List<PostDTO> postPage = postService.findAll(PageRequest.of(page, size));
 	    return ResponseEntity.ok(postPage);
 	}
-	
+
+	@GetMapping("/post/{postId}")
+	public ResponseEntity<PostDTO> getPostById(@PathVariable Long postId) {
+	    PostDTO post = postService.findPostById(postId);
+	    return ResponseEntity.ok(post);
+	}
+
 	@PostMapping("/newPost")
 	public PostDTO savePost(@ModelAttribute PostDTO postDTO,
-							@RequestParam(name = "thumbnail", required = false) MultipartFile thumbnail) {
+							@RequestParam(name = "thumbnail", required = false) MultipartFile thumbnail,
+						    @RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
+	    System.out.println("Authorization Header: " + authorizationHeader);
 	    return postService.save(postDTO, null, thumbnail);
 	}
 
