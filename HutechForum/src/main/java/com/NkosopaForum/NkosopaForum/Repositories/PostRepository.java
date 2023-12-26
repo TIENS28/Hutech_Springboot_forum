@@ -18,7 +18,7 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	@Query("SELECT DISTINCT p FROM Post p LEFT JOIN FETCH p.comments")
     List<Post> findAllWithComments();
 	
-	@Query("SELECT p FROM Post p WHERE p.user.id = :userId")
+	@Query("SELECT p FROM Post p WHERE p.user.id = :userId ORDER BY p.createdDate DESC")
 	List<Post> findPostsByUserId(@Param("userId") Long userId);
 	
 	@Query("SELECT DISTINCT p FROM Post p WHERE p.title LIKE %:query% OR p.Content LIKE %:query%")
@@ -31,4 +31,5 @@ public interface PostRepository extends JpaRepository<Post, Long>{
     @Modifying
     @Query("DELETE FROM Post p WHERE p.id = :postId")
     void deletePostById(@Param("postId") Long postId);
+    
 }

@@ -13,6 +13,7 @@ import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 
 @Component
@@ -25,6 +26,9 @@ public class PostConverter {
 	@Autowired
 	@Lazy
 	private CommentServices cmtService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 	
 	public Post PostToEntity(PostDTO dto) {
 		Post entity = new Post();
@@ -70,6 +74,7 @@ public class PostConverter {
 
 	 public PostDTO toDTO(Post entity) {
 	        PostDTO dto = new PostDTO();
+	        User currentUser = authenticationService.getCurrentUser();
 	        
 	        if (entity.getId() != null) {
 	            dto.setId(entity.getId());
@@ -81,14 +86,18 @@ public class PostConverter {
 	        dto.setCreatedDate(entity.getCreatedDate());
 	        dto.setCreatedBy(entity.getCreatedBy());
 	        dto.setUser(userConverter.EnitytoDTO(entity.getUser()));
+	        dto.setTotalLikes(entity.getLikes().size());
 	        dto.setTotalComments(entity.getComments().size());
 	        dto.setModifiedDate(entity.getModifiedDate());
 	       
 			List<CommentDTO> comments = cmtService.findByPostId(dto.getId());
+		    dto.setLiked(entity.getLikes().stream().anyMatch(like -> like.getUser().equals(currentUser)));
+
 			dto.setComments(comments);
 			
 	        return dto;
-	    }
+	 }
+	 
 	 
 	 public List<PostDTO> toDTOList(List<Post> posts) {
 	        return posts.stream()

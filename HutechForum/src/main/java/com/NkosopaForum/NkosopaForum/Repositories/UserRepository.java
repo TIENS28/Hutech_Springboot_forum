@@ -21,5 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
     User findByVerificationToken(String verificationToken);
     
 	User findByEmailAndVerificationToken(String email, String token);
-
+	
+	@Query("SELECT u FROM User u JOIN FETCH u.post WHERE u.id = :userId")
+	User findUserWithPosts(@Param("userId") Long userId);
 }

@@ -15,9 +15,11 @@ import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
+import com.NkosopaForum.NkosopaForum.Entity.LikeEntity;
 //import com.NkosopaForum.NkosopaForum.Entity.CommentEntity;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
 //import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iUserService;
@@ -29,7 +31,10 @@ public class UserService implements iUserService {
 
 	@Autowired
 	private UserRepository userRepo;
-
+	
+	@Autowired
+	private PostService postService;
+	
 	@Autowired
 	private UserConverter userConverter;
 
@@ -38,12 +43,6 @@ public class UserService implements iUserService {
 
 	@Autowired
 	private PostConverter postConverter;
-	
-	@Autowired
-	private CommentServices commentServices;
-	
-	@Autowired
-	private PostService postService;
 	
 	// update user profile
 	@Override
@@ -79,24 +78,16 @@ public class UserService implements iUserService {
 	@Override
 	@Transactional
 	public void delete(Long id) {
-	    Optional<User> optionalUser = userRepo.findById(id);
-
-	    if (optionalUser.isPresent()) {
-	        User user = optionalUser.get();
-
-	        commentServices.deleteAllByUserId(id);
-
-	  	    for (Post post : user.getPost()) {
-	  	    	commentServices.deleteAllByPostId(post.getId());
-	  	    }
-
-	  	    postService.deleteAllByUserId(id);
-	  	    
-	  	    userRepo.deleteById(id);
-	    } else {
-	        throw new EntityNotFoundException("User not found with ID: " + id);
-	    }
+		Optional<User> optionalUser =  userRepo.findById(id);
+		if(optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			for(Post post : user.getPost()) {
+				postService.delete(post.getId());
+			}
+			userRepo.delete(user);
+		}
 	}
+	
 	@Override
 	public List<UserDTO> findAll() {
 		List<UserDTO> rs = new ArrayList<>();
@@ -134,7 +125,7 @@ public class UserService implements iUserService {
 		Optional<User> userOptional = userRepo.findById(userId);
 		return userOptional.map(userConverter::EnitytoDTO).orElse(null);
 	}
-	
+    
 //	@Override
 //	public List<UserDTO> getFollowingUsers() {
 //		User currentUser = authenticationService.getCurrentUser();

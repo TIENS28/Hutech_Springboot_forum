@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
+import com.NkosopaForum.NkosopaForum.Entity.User;
+import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 import com.NkosopaForum.NkosopaForum.Services.impl.PostService;
 
@@ -36,6 +38,9 @@ public class PostController {
 	@Autowired
 	private CommentServices cmtService;
 	
+	@Autowired
+	private AuthenticationService authenticationService;
+	
 	@GetMapping("/admin/posts")
 	public ResponseEntity<List<PostDTO>> findAll(
 	    @RequestParam(defaultValue = "0") int page,
@@ -44,6 +49,16 @@ public class PostController {
 	    return ResponseEntity.ok(postPage);
 	}
 
+	// get all post and its comments order by created date desc 
+	@GetMapping("/allPost")
+	public ResponseEntity<List<PostDTO>> getAllPosts() {
+		User user = authenticationService.getCurrentUser();
+
+		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
+		return ResponseEntity.ok(posts);
+	}
+	
+	
 	@GetMapping("/post/{postId}")
 	public ResponseEntity<PostDTO> getPostById(@PathVariable Long postId) {
 	    PostDTO post = postService.findPostById(postId);
@@ -95,18 +110,19 @@ public class PostController {
         List<CommentDTO> comments = cmtService.findByPostId(postId);
         return ResponseEntity.ok(comments);
     }
-	
-	// get all post and its comments order by created date desc 
-	@GetMapping("/allPost")
-	public ResponseEntity<List<PostDTO>> getAllPosts() {
-		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
-		return ResponseEntity.ok(posts);
-	}
-	
 	  
     @GetMapping("/user/post")
     public ResponseEntity<List<PostDTO>> getPostsForCurrentUser() {
     	List<PostDTO> posts = postService.getPostsForCurrentUser();
 		return ResponseEntity.ok(posts);
+   }
+    
+    @PostMapping("/like/{postId}/{userId}")
+    public ResponseEntity<String> likePost(@PathVariable Long postId,
+    										@PathVariable Long userId) {
+
+        postService.likePost(postId, userId);
+
+        return ResponseEntity.ok("Post liked successfully");
     }
 }

@@ -32,44 +32,13 @@ public class Post extends BaseEntity<Post> {
 	private String thumbnailUrl;
 
 
-	@Builder.Default
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CommentEntity> comments = new ArrayList<>();
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<LikeEntity> likes = new ArrayList<>();
+	        
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return Description;
-	}
-
-	public void setDescription(String description) {
-		Description = description;
-	}
-
-	public String getContent() {
-		return Content;
-	}
-
-	public void setContent(String content) {
-		Content = content;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }

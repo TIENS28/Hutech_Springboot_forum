@@ -8,14 +8,12 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,6 +39,7 @@ public class User extends BaseEntity<User> implements UserDetails{
 	
 	private String password;
 	
+	@Builder.Default
 	private boolean status =  false;
 	
 	private String department;
@@ -54,25 +53,18 @@ public class User extends BaseEntity<User> implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Post> post = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CommentEntity> comment = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<LikeEntity> likes = new ArrayList<>();
 	
     private String verificationToken;
 
     private Date verificationExpirationDate;
-    
-	public List<Post> getPost() {
-		return post;
-	}
-
-	public void setPost(List<Post> post) {
-		this.post = post;
-	}
-	
 	
 	
 	@Override
@@ -116,5 +108,17 @@ public class User extends BaseEntity<User> implements UserDetails{
 		// TODO Auto-generated method stub
 		return password;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+	    User user = (User) obj;
+	    return id != null && id.equals(user.id);
+	}
 
+	@Override
+	public int hashCode() {
+	    return id != null ? id.hashCode() : 0;
+	}
 }

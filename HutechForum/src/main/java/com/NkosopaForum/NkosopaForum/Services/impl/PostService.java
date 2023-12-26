@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +17,12 @@ import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
+import com.NkosopaForum.NkosopaForum.Entity.LikeEntity;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.Role;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
+import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iPostServices;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -29,7 +32,10 @@ public class PostService implements iPostServices {
 
 	@Autowired
 	private PostRepository postRepo;
-
+	
+	@Autowired
+	private UserRepository userRepo;
+	
 	@Autowired
 	private PostConverter postConvert;
 	
@@ -38,9 +44,6 @@ public class PostService implements iPostServices {
 	
 	@Autowired
 	private UserConverter userConverter;
-	
-	@Autowired
-	private CommentServices commentServices;
 	
 	//another way is get current user by extract jwt token
 	@Override
@@ -77,14 +80,16 @@ public class PostService implements iPostServices {
 	@Transactional
 	public void delete(Long id) {
 	    Optional<Post> optionalPost = postRepo.findById(id);
+        User currentUser = authenticationService.getCurrentUser();
 
 	    if (optionalPost.isPresent()) {
 	        Post post = optionalPost.get();
-	        User currentUser = authenticationService.getCurrentUser();
 
 	        if (post.getUser().getId().equals(currentUser.getId()) || currentUser.getRole() == Role.ADMIN) {
-	        	commentServices.deleteAllByPostId(id);
-	        	postRepo.deletePostById(id);
+	        	post.getComments().size();
+	        	post.getLikes().size();
+	   
+	            postRepo.delete(post);;
 	        } else {
 	            throw new EntityNotFoundException("You are not the post owner, and not an admin");
 	        }
@@ -103,18 +108,22 @@ public class PostService implements iPostServices {
 	}
 
 	@Override
+	@Transactional
 	public List<PostDTO> getPostsForCurrentUser() {
 	    User currentUser = authenticationService.getCurrentUser();
-
 	    if (currentUser != null) {
-	        List<Post> userPosts = currentUser.getPost();
-	        return userPosts.stream()
+	        List<PostDTO> posts = postRepo.findPostsByUserId(currentUser.getId())
+	                .stream()
 	                .map(postConvert::toDTO)
 	                .collect(Collectors.toList());
+	        return posts;
 	    } else {
 	        return Collections.emptyList();
 	    }
 	}
+
+
+
 	
 	@Override
 	public Page<PostDTO> searchPost(String query, Pageable pageable) {
@@ -124,13 +133,46 @@ public class PostService implements iPostServices {
 	
 	@Override
 	public List<PostDTO> findAllPostsOrderByCreatedDate() {
-	    List<Post> posts = postRepo.findAllByOrderByCreatedDateDesc();
-	    return posts.stream()
-	            .map(postConvert::toDTO)
-	            .collect(Collectors.toList());
+		User user = authenticationService.getCurrentUser();
+	    System.out.println("User in postService: " + user.getId());  // Add this line for debugging
+	    List<PostDTO> posts = postRepo.findAllByOrderByCreatedDateDesc()
+	    		.stream()
+	    		.map(postConvert::toDTO)
+	    		.collect(Collectors.toList());
+		return posts;
+	    	
 	}
 	
+	
+	@Transactional
+    public void likePost(Long postId, Long userId) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
+        Post post = postRepo.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("Post not found"));
+        
+        //if user is like the post before, they unlike the post
+        if (postIsLikedByUser(user, post)) {
+            post.getLikes().removeIf(like -> like.getUser().equals(user));
+        }else {
+
+        	LikeEntity like = LikeEntity.builder()
+                .user(user)
+                .post(post)
+                .build();
+
+        	post.getLikes().add(like);
+        }
+        userRepo.save(user);
+    }
+	
+	//check if the post is liked by user
+    private boolean postIsLikedByUser(User user, Post post) {
+        return post.getLikes().stream()
+                .anyMatch(like -> like.getUser().equals(user));
+    }
+    
 	@Override
     public PostDTO findPostById(Long postId) {
         Optional<Post> postOptional = postRepo.findById(postId);
