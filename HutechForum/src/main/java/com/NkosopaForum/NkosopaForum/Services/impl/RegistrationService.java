@@ -1,9 +1,7 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
-import java.util.Date;
 import java.util.UUID;
 
-import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

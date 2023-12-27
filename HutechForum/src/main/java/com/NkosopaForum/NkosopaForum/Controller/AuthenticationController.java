@@ -32,7 +32,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<?> register(
         @ModelAttribute RegisterRequest request,
-        @RequestParam("avatar") MultipartFile avatar) {
+        @RequestParam(name = "avatar", required = false) MultipartFile avatar) {
         AuthenticationResponse response = authService.registerWithVerification(request, avatar);
         if (response != null) {
             return ResponseEntity.ok(response);

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.annotation.Nullable;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -19,6 +20,8 @@ public class PostDTO extends BaseDTO<PostDTO> {
     private int totalLikes;
     private int totalComments;
     private UserDTO currentUser;
+    
+    @Nullable
     private MultipartFile thumbnail;
     private String thumbnailUrl;
 

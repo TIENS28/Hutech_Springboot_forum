@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.NkosopaForum.NkosopaForum.Converter.CommentConverter;
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
@@ -15,7 +14,6 @@ import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
-import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iCommentService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -70,16 +68,6 @@ public class CommentServices implements iCommentService {
 			}
 		}
 		return rs;
-	}
-	
-	@Transactional
-	public void deleteAllByUserId(Long userId) {
-	    cmtRepo.deleteAllByUserId(userId);
-	}
-	
-	@Transactional
-	public void deleteAllByPostId(Long postId) {
-		cmtRepo.deleteAllByPostId(postId);
 	}
 	
 }

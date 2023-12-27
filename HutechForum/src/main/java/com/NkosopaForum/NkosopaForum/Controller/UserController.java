@@ -1,6 +1,6 @@
 package com.NkosopaForum.NkosopaForum.Controller;
 
-import javax.validation.Valid;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class UserController {
     private UserService userService;
     
     @PutMapping("/updateProfile")
-    public UserDTO updateProfile(@ModelAttribute @Valid UserDTO userDTO,
+    public UserDTO updateProfile(@ModelAttribute UserDTO userDTO,
                                  @RequestPart(name = "avatar", required = false) MultipartFile avatar) {
         userDTO.setAvatar(avatar);
         return userService.updateProfile(userDTO);
@@ -39,12 +39,6 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.ok("User deleted successfully");
     }
-//
-//    @GetMapping("/allUsers")
-//    public ResponseEntity<List<UserDTO>> getAllUsers() {
-//        List<UserDTO> users = userService.findAll();
-//        return ResponseEntity.ok(users);
-//    }
     
     @GetMapping("/user/{email}")
     public ResponseEntity<UserDTO> findByEmail(@PathVariable String email) {
@@ -62,6 +56,11 @@ public class UserController {
         return ResponseEntity.ok(userProfile);
     }
   
+    @GetMapping("/allUsers")
+    public ResponseEntity<List<UserDTO>> findAllUsers() {
+        List<UserDTO> users = userService.findAll();
+        return ResponseEntity.ok(users);
+    }
     
 //    // Get followers
 //    @GetMapping("/followers")

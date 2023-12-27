@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.NkosopaForum.NkosopaForum.DTO.CommentDTO;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
-import com.NkosopaForum.NkosopaForum.Entity.User;
-import com.NkosopaForum.NkosopaForum.Services.impl.AuthenticationService;
 import com.NkosopaForum.NkosopaForum.Services.impl.CommentServices;
 import com.NkosopaForum.NkosopaForum.Services.impl.PostService;
 
@@ -38,22 +35,10 @@ public class PostController {
 	@Autowired
 	private CommentServices cmtService;
 	
-	@Autowired
-	private AuthenticationService authenticationService;
-	
-	@GetMapping("/admin/posts")
-	public ResponseEntity<List<PostDTO>> findAll(
-	    @RequestParam(defaultValue = "0") int page,
-	    @RequestParam(defaultValue = "5") int size) {
-	    List<PostDTO> postPage = postService.findAll(PageRequest.of(page, size));
-	    return ResponseEntity.ok(postPage);
-	}
 
 	// get all post and its comments order by created date desc 
 	@GetMapping("/allPost")
 	public ResponseEntity<List<PostDTO>> getAllPosts() {
-		User user = authenticationService.getCurrentUser();
-
 		List<PostDTO> posts = postService.findAllPostsOrderByCreatedDate();
 		return ResponseEntity.ok(posts);
 	}
@@ -66,10 +51,8 @@ public class PostController {
 	}
 
 	@PostMapping("/newPost")
-	public PostDTO savePost(@ModelAttribute PostDTO postDTO,
-							@RequestParam(name = "thumbnail", required = false) MultipartFile thumbnail,
-						    @RequestHeader(value = "Authorization", required = false) String authorizationHeader) {
-	    System.out.println("Authorization Header: " + authorizationHeader);
+	public PostDTO savePost(@ModelAttribute  PostDTO postDTO,
+							@RequestParam(name = "thumbnail", required = false) MultipartFile thumbnail) {
 	    return postService.save(postDTO, null, thumbnail);
 	}
 
@@ -104,6 +87,7 @@ public class PostController {
 	    Page<PostDTO> postPage = postService.searchPost(query, PageRequest.of(page, size));
 	    return ResponseEntity.ok(postPage);
 	}
+	
 	
 	@GetMapping("/{postId}/comments")
     public ResponseEntity<List<CommentDTO>> getComments(@PathVariable Long postId) {

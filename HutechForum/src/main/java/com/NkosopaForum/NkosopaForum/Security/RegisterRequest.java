@@ -1,6 +1,8 @@
 package com.NkosopaForum.NkosopaForum.Security;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +25,8 @@ public class RegisterRequest {
     
     private String DOB;
     private String department;
+    
+    @Nullable
     private MultipartFile avatar;
 }
 

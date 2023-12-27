@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
-import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
 import com.NkosopaForum.NkosopaForum.Entity.LikeEntity;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.Role;
@@ -50,14 +48,20 @@ public class PostService implements iPostServices {
 	public PostDTO save(PostDTO postDTO, Long id, MultipartFile thumbnail) {
 		
 		Post newPost = new Post();
-        String thumbnailUrl = authenticationService.uploadImageToCloudinary(thumbnail);
+		
 		if (postDTO.getId() == null) {
+			//get current login user then add to set User for post
 	        User curentUser = authenticationService.getCurrentUser();
 			postDTO.setUser(userConverter.EnitytoDTO(curentUser));
-	        postDTO.setThumbnailUrl(thumbnailUrl);
-	        
+			//check if the post have thumbnail
+			if (postDTO.getThumbnail() != null) {
+				//upload the thumnail to cloudinary
+	            String thumbnailUrl = authenticationService.uploadImageToCloudinary(postDTO.getThumbnail());
+		        postDTO.setThumbnailUrl(thumbnailUrl);
+	        }	        
 			newPost = postConvert.PostToEntity(postDTO);
 		} else {
+			//update post function, have not apply in UI yet 
 			Optional<Post> OldoptionalPost = postRepo.findById(postDTO.getId());
 
 			if (OldoptionalPost.isPresent()) {
@@ -86,6 +90,12 @@ public class PostService implements iPostServices {
 	        Post post = optionalPost.get();
 
 	        if (post.getUser().getId().equals(currentUser.getId()) || currentUser.getRole() == Role.ADMIN) {
+	        	
+	        	if (post.getThumbnailUrl() != null) {
+	        	    authenticationService.deleteFromCloudinary(post.getThumbnailUrl());
+	        	}
+	        	
+	        	//force-load post's comments and post's likes, which fetchType is LAZY 
 	        	post.getComments().size();
 	        	post.getLikes().size();
 	   
@@ -123,18 +133,15 @@ public class PostService implements iPostServices {
 	}
 
 
-
-	
 	@Override
 	public Page<PostDTO> searchPost(String query, Pageable pageable) {
-	    Page<PostDTO> postPage = postRepo.searchPost(query, pageable).map(postConvert::toDTO);
+	    Page<PostDTO> postPage = postRepo.searchPost(query, pageable)
+	    								.map(postConvert::toDTO);
 	    return postPage;
 	}
 	
 	@Override
 	public List<PostDTO> findAllPostsOrderByCreatedDate() {
-		User user = authenticationService.getCurrentUser();
-	    System.out.println("User in postService: " + user.getId());  // Add this line for debugging
 	    List<PostDTO> posts = postRepo.findAllByOrderByCreatedDateDesc()
 	    		.stream()
 	    		.map(postConvert::toDTO)
@@ -156,7 +163,7 @@ public class PostService implements iPostServices {
         if (postIsLikedByUser(user, post)) {
             post.getLikes().removeIf(like -> like.getUser().equals(user));
         }else {
-
+        	// if user haven't like the post, add like to post
         	LikeEntity like = LikeEntity.builder()
                 .user(user)
                 .post(post)
@@ -185,8 +192,4 @@ public class PostService implements iPostServices {
         }
     }
 	
-	@Transactional
-	void deleteAllByUserId(Long userId) {
-		postRepo.deleteAllByUserId(userId);
-	}
 }

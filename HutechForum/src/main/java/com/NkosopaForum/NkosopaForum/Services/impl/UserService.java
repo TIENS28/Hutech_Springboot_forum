@@ -1,6 +1,5 @@
 package com.NkosopaForum.NkosopaForum.Services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,12 +14,8 @@ import com.NkosopaForum.NkosopaForum.Converter.PostConverter;
 import com.NkosopaForum.NkosopaForum.Converter.UserConverter;
 import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.DTO.UserDTO;
-import com.NkosopaForum.NkosopaForum.Entity.LikeEntity;
-//import com.NkosopaForum.NkosopaForum.Entity.CommentEntity;
 import com.NkosopaForum.NkosopaForum.Entity.Post;
 import com.NkosopaForum.NkosopaForum.Entity.User;
-import com.NkosopaForum.NkosopaForum.Repositories.PostRepository;
-//import com.NkosopaForum.NkosopaForum.Repositories.CommentRepository;
 import com.NkosopaForum.NkosopaForum.Repositories.UserRepository;
 import com.NkosopaForum.NkosopaForum.Services.iUserService;
 
@@ -84,20 +79,23 @@ public class UserService implements iUserService {
 			for(Post post : user.getPost()) {
 				postService.delete(post.getId());
 			}
+			if(!user.getAvatarUrl().equals("https://res.cloudinary.com/dh8vxjhie/image/upload/v1703669726/gzsqmbpgixjlnw3enu5m.png")) {
+				authenticationService.deleteFromCloudinary(user.getAvatarUrl());
+			}
 			userRepo.delete(user);
 		}
 	}
 	
+	//only find 'USER', exclude 'ADMIN'
 	@Override
 	public List<UserDTO> findAll() {
-		List<UserDTO> rs = new ArrayList<>();
-		List<User> users = userRepo.findAll();
-		for (User item : users) {
-			UserDTO userDto = userConverter.EnitytoDTO(item);
-			rs.add(userDto);
-		}
-		return rs;
+	    List<UserDTO> rs = userRepo.findAllByRole().stream()
+	            .map(userConverter::EnitytoDTO)
+	            .collect(Collectors.toList());
+	    return rs;
 	}
+
+
 
 	@Override
 	public UserDTO findByEmail(String email) {

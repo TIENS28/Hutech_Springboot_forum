@@ -50,8 +50,13 @@ public class AuthenticationService implements iAuthenticationService{
             throw new RuntimeException("Email is already bind with other account!");
         }
         
-        String avatarUrl = uploadImageToCloudinary(avatar);
-        
+		String avatarUrl;
+
+	    if (avatar == null || avatar.isEmpty()) {
+	        avatarUrl = "https://res.cloudinary.com/dh8vxjhie/image/upload/v1703677277/default_avatar_zcywzp.jpg";
+	    } else {
+	        avatarUrl = uploadImageToCloudinary(avatar);
+	    }        
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -83,6 +88,22 @@ public class AuthenticationService implements iAuthenticationService{
 	        throw new RuntimeException("Failed to upload avatar to Cloudinary", e);
 	    }
 	}
+	
+	@Override
+    public void deleteFromCloudinary(String imageUrl) {
+        try {
+            String publicId = extractImageUrl(imageUrl);
+            cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to delete image from Cloudinary", e);
+        }
+    }
+	
+	private String extractImageUrl(String imageUrl) {
+        String[] segment = imageUrl.split("/");
+        String filename = segment[segment.length - 1];
+        return filename.substring(0, filename.lastIndexOf("."));
+    }
 
 	@Override
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {

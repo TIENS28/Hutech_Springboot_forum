@@ -10,14 +10,11 @@ import com.NkosopaForum.NkosopaForum.DTO.PostDTO;
 import com.NkosopaForum.NkosopaForum.Entity.User;
 
 public interface iPostServices {
-//	PostDTO save(PostDTO postDTO, Long id);
 	void delete(Long id);
 	List<PostDTO> findAll(Pageable pageable);
 	List<PostDTO> findAllPostsOrderByCreatedDate();
-//	List<PostDTO> findAll(User currentUser);
 	List<PostDTO> getPostsForCurrentUser();
-//	List<PostDTO> searchPost(String query);
-	Page<PostDTO> searchPost(String query, Pageable pageable);
+	Page<PostDTO> searchPost(String query, Pageable pageable); //
 	PostDTO save(PostDTO postDTO, Long id, MultipartFile thumbnail);
 	PostDTO findPostById(Long postId);
 	

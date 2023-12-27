@@ -17,4 +17,6 @@ public interface iAuthenticationService {
 
 	User getCurrentUser();
 
+	void deleteFromCloudinary(String imageUrl);
+
 }
